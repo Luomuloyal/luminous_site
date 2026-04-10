@@ -4,7 +4,8 @@ import vue from '@vitejs/plugin-vue'
 import tresCompilerOptions from '@tresjs/core/template-compiler-options'
 
 export default defineConfig({
-  base: '/luminous/',
+  // Default to GitHub repo path, allow override for other deployments.
+  base: process.env.VITE_PUBLIC_BASE || '/luminous_site/',
   plugins: [vue(tresCompilerOptions), tailwindcss()],
   server: {
     proxy: {
