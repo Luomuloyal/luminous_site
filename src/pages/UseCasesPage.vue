@@ -137,9 +137,11 @@ const selectedScenario = ref(0)
 .usecase-selector {
   margin: 3rem 0;
   padding: 1.5rem;
-  border: 1px solid rgba(100, 116, 139, 0.06);
+  border: 1px solid var(--color-accent);
   border-radius: 0.75rem;
-  background: #ffffff;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent-secondary) 16%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, white 88%, var(--color-accent) 12%));
 }
 
 .scenario-tabs {
@@ -248,8 +250,10 @@ const selectedScenario = ref(0)
 
 .step-content {
   padding: 1rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent-secondary) 16%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, white 88%, var(--color-accent-tertiary) 12%));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 28%, white);
   border-radius: 0.5rem;
 }
 
@@ -286,8 +290,10 @@ const selectedScenario = ref(0)
 
 .benefit-card {
   padding: 1.25rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent-tertiary) 16%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, white 88%, var(--color-accent) 12%));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 26%, white);
   border-radius: 0.5rem;
   display: flex;
   align-items: flex-start;
@@ -320,8 +326,10 @@ const selectedScenario = ref(0)
 
 .summary-card {
   padding: 1.5rem;
-  background: rgba(200, 240, 216, 0.06);
-  border: 1px solid rgba(200, 240, 216, 0.12);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent-secondary) 18%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), color-mix(in srgb, white 84%, var(--color-accent-tertiary) 16%));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 26%, white);
   border-radius: 0.5rem;
 }
 

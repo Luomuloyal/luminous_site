@@ -1,3 +1,5 @@
+import previewImage from '../assets/主页.png'
+
 export const motionTokens = {
   heroDuration: 0.8,
   revealDuration: 0.65,
@@ -23,14 +25,14 @@ export const surfaceTokens = {
 
 export const pageThemeTokens = {
   home: {
-    accent: '#B7C4D3',
-    accentSecondary: '#D7C2BE',
-    accentTertiary: '#C9D5C7',
-    glow: 'rgba(183, 196, 211, 0.16)',
-    glowSecondary: 'rgba(215, 194, 190, 0.12)',
-    mesh: 'rgba(201, 213, 199, 0.12)',
-    border: 'rgba(183, 196, 211, 0.2)',
-    background: 'linear-gradient(180deg, #F6F6F4 0%, #F2F4F6 44%, #F7F3F0 100%)',
+    accent: '#AFC6DD',
+    accentSecondary: '#E0C3CB',
+    accentTertiary: '#C7DABF',
+    glow: 'rgba(175, 198, 221, 0.2)',
+    glowSecondary: 'rgba(224, 195, 203, 0.16)',
+    mesh: 'rgba(199, 218, 191, 0.14)',
+    border: 'rgba(175, 198, 221, 0.28)',
+    background: 'linear-gradient(180deg, #F4F7FA 0%, #F3F5FA 38%, #F7F1F2 100%)',
     orbs: [
       { size: '44rem', top: '-16rem', left: '-12rem', color: 'rgba(183, 196, 211, 0.12)' },
       { size: '30rem', top: '16vh', right: '-8rem', color: 'rgba(201, 213, 199, 0.1)' },
@@ -38,59 +40,59 @@ export const pageThemeTokens = {
     ],
   },
   features: {
-    accent: '#AEB8C5',
-    accentSecondary: '#C9D0C3',
-    accentTertiary: '#D7C7BB',
-    glow: 'rgba(174, 184, 197, 0.14)',
-    glowSecondary: 'rgba(201, 208, 195, 0.12)',
-    mesh: 'rgba(215, 199, 187, 0.1)',
-    border: 'rgba(174, 184, 197, 0.18)',
-    background: 'linear-gradient(180deg, #F5F3F1 0%, #F1F2F2 52%, #F4F1EE 100%)',
+    accent: '#AFCFE8',
+    accentSecondary: '#D4C5EA',
+    accentTertiary: '#CBE0D3',
+    glow: 'rgba(175, 207, 232, 0.2)',
+    glowSecondary: 'rgba(212, 197, 234, 0.16)',
+    mesh: 'rgba(203, 224, 211, 0.14)',
+    border: 'rgba(175, 207, 232, 0.28)',
+    background: 'linear-gradient(180deg, #F2F7FB 0%, #F2F2FA 48%, #F2F7F2 100%)',
     orbs: [
-      { size: '36rem', top: '4rem', left: '-10rem', color: 'rgba(174, 184, 197, 0.12)' },
-      { size: '28rem', top: '24rem', right: '-8rem', color: 'rgba(201, 208, 195, 0.1)' },
-      { size: '26rem', bottom: '-6rem', left: '34%', color: 'rgba(215, 199, 187, 0.1)' },
+      { size: '36rem', top: '4rem', left: '-10rem', color: 'rgba(183, 207, 228, 0.12)' },
+      { size: '28rem', top: '24rem', right: '-8rem', color: 'rgba(206, 198, 230, 0.1)' },
+      { size: '26rem', bottom: '-6rem', left: '34%', color: 'rgba(211, 224, 211, 0.1)' },
     ],
   },
   experience: {
-    accent: '#B8C6B1',
-    accentSecondary: '#C8B8B3',
-    accentTertiary: '#D8D2C8',
-    glow: 'rgba(184, 198, 177, 0.14)',
-    glowSecondary: 'rgba(200, 184, 179, 0.12)',
-    mesh: 'rgba(216, 210, 200, 0.1)',
-    border: 'rgba(184, 198, 177, 0.18)',
-    background: 'linear-gradient(180deg, #F4F2ED 0%, #EEF1EC 52%, #F4F1EC 100%)',
+    accent: '#BDD9C1',
+    accentSecondary: '#E5C7BD',
+    accentTertiary: '#E5DEB8',
+    glow: 'rgba(189, 217, 193, 0.2)',
+    glowSecondary: 'rgba(229, 199, 189, 0.16)',
+    mesh: 'rgba(229, 222, 184, 0.14)',
+    border: 'rgba(189, 217, 193, 0.28)',
+    background: 'linear-gradient(180deg, #F1F7F2 0%, #EEF6F0 42%, #F8F2EA 100%)',
     orbs: [
-      { size: '32rem', top: '-10rem', right: '-8rem', color: 'rgba(184, 198, 177, 0.12)' },
-      { size: '30rem', top: '30vh', left: '-10rem', color: 'rgba(200, 184, 179, 0.1)' },
-      { size: '22rem', bottom: '-4rem', right: '24%', color: 'rgba(216, 210, 200, 0.1)' },
+      { size: '32rem', top: '-10rem', right: '-8rem', color: 'rgba(191, 214, 193, 0.12)' },
+      { size: '30rem', top: '30vh', left: '-10rem', color: 'rgba(225, 199, 192, 0.1)' },
+      { size: '22rem', bottom: '-4rem', right: '24%', color: 'rgba(230, 223, 195, 0.1)' },
     ],
   },
   about: {
-    accent: '#CABAA6',
-    accentSecondary: '#B9C4CE',
-    accentTertiary: '#D4C8BF',
-    glow: 'rgba(202, 186, 166, 0.14)',
-    glowSecondary: 'rgba(185, 196, 206, 0.12)',
-    mesh: 'rgba(212, 200, 191, 0.1)',
-    border: 'rgba(202, 186, 166, 0.18)',
-    background: 'linear-gradient(180deg, #F7F2EC 0%, #F4F1EB 52%, #F8F4EF 100%)',
+    accent: '#DFC6A9',
+    accentSecondary: '#BCCFE0',
+    accentTertiary: '#E8CFC6',
+    glow: 'rgba(223, 198, 169, 0.2)',
+    glowSecondary: 'rgba(188, 207, 224, 0.16)',
+    mesh: 'rgba(232, 207, 198, 0.14)',
+    border: 'rgba(223, 198, 169, 0.28)',
+    background: 'linear-gradient(180deg, #F8F3EC 0%, #F3F6F8 46%, #F8F0EE 100%)',
     orbs: [
-      { size: '32rem', top: '-10rem', left: '-12rem', color: 'rgba(202, 186, 166, 0.12)' },
-      { size: '28rem', top: '25vh', right: '-10rem', color: 'rgba(185, 196, 206, 0.1)' },
-      { size: '22rem', bottom: '-8rem', left: '35%', color: 'rgba(212, 200, 191, 0.1)' },
+      { size: '32rem', top: '-10rem', left: '-12rem', color: 'rgba(216, 198, 178, 0.12)' },
+      { size: '28rem', top: '25vh', right: '-10rem', color: 'rgba(197, 208, 218, 0.1)' },
+      { size: '22rem', bottom: '-8rem', left: '35%', color: 'rgba(226, 211, 204, 0.1)' },
     ],
   },
   download: {
-    accent: '#C8B7C9',
-    accentSecondary: '#B8C6CF',
-    accentTertiary: '#D8C8B8',
-    glow: 'rgba(200, 183, 201, 0.14)',
-    glowSecondary: 'rgba(184, 198, 207, 0.12)',
-    mesh: 'rgba(216, 200, 184, 0.1)',
-    border: 'rgba(200, 183, 201, 0.18)',
-    background: 'linear-gradient(180deg, #F7F3F6 0%, #F2F4F5 52%, #F8F2ED 100%)',
+    accent: '#D2BDE0',
+    accentSecondary: '#BFD3E2',
+    accentTertiary: '#E6CDBD',
+    glow: 'rgba(210, 189, 224, 0.2)',
+    glowSecondary: 'rgba(191, 211, 226, 0.16)',
+    mesh: 'rgba(230, 205, 189, 0.14)',
+    border: 'rgba(210, 189, 224, 0.28)',
+    background: 'linear-gradient(180deg, #F7F2FA 0%, #F2F6FA 46%, #F9F1EC 100%)',
     orbs: [
       { size: '28rem', top: '-6rem', left: '-8rem', color: 'rgba(200, 183, 201, 0.12)' },
       { size: '24rem', top: '22rem', right: '-7rem', color: 'rgba(184, 198, 207, 0.1)' },
@@ -98,33 +100,33 @@ export const pageThemeTokens = {
     ],
   },
   usecases: {
-    accent: '#B8C6B1',
-    accentSecondary: '#D2C3BC',
-    accentTertiary: '#C8D0C6',
-    glow: 'rgba(184, 198, 177, 0.14)',
-    glowSecondary: 'rgba(210, 195, 188, 0.12)',
-    mesh: 'rgba(200, 208, 198, 0.1)',
-    border: 'rgba(184, 198, 177, 0.18)',
-    background: 'linear-gradient(180deg, #F3F1EC 0%, #EEF2EC 52%, #F4F2ED 100%)',
+    accent: '#C7DDC7',
+    accentSecondary: '#E3C8C1',
+    accentTertiary: '#CBDADF',
+    glow: 'rgba(199, 221, 199, 0.2)',
+    glowSecondary: 'rgba(227, 200, 193, 0.16)',
+    mesh: 'rgba(203, 218, 223, 0.14)',
+    border: 'rgba(199, 221, 199, 0.28)',
+    background: 'linear-gradient(180deg, #F1F6F0 0%, #EEF5F0 42%, #F7F0F0 100%)',
     orbs: [
-      { size: '36rem', top: '-8rem', left: '-12rem', color: 'rgba(184, 198, 177, 0.12)' },
-      { size: '28rem', top: '28vh', right: '-9rem', color: 'rgba(210, 195, 188, 0.1)' },
-      { size: '24rem', bottom: '-5rem', left: '32%', color: 'rgba(200, 208, 198, 0.1)' },
+      { size: '36rem', top: '-8rem', left: '-12rem', color: 'rgba(199, 218, 200, 0.12)' },
+      { size: '28rem', top: '28vh', right: '-9rem', color: 'rgba(222, 203, 192, 0.1)' },
+      { size: '24rem', bottom: '-5rem', left: '32%', color: 'rgba(212, 223, 215, 0.1)' },
     ],
   },
   privacy: {
-    accent: '#CBB6B2',
-    accentSecondary: '#B8C3CF',
-    accentTertiary: '#C4CEC3',
-    glow: 'rgba(203, 182, 178, 0.14)',
-    glowSecondary: 'rgba(184, 195, 207, 0.12)',
-    mesh: 'rgba(196, 206, 195, 0.1)',
-    border: 'rgba(203, 182, 178, 0.18)',
-    background: 'linear-gradient(180deg, #F8F2F0 0%, #F3F1EF 52%, #F8F4F1 100%)',
+    accent: '#E3C5D1',
+    accentSecondary: '#C3D8E8',
+    accentTertiary: '#D0E0D2',
+    glow: 'rgba(227, 197, 209, 0.2)',
+    glowSecondary: 'rgba(195, 216, 232, 0.16)',
+    mesh: 'rgba(208, 224, 210, 0.14)',
+    border: 'rgba(227, 197, 209, 0.28)',
+    background: 'linear-gradient(180deg, #FAF1F5 0%, #F2F5FA 46%, #F3F6F1 100%)',
     orbs: [
-      { size: '32rem', top: '-10rem', right: '-10rem', color: 'rgba(203, 182, 178, 0.12)' },
-      { size: '28rem', top: '32vh', left: '-8rem', color: 'rgba(184, 195, 207, 0.1)' },
-      { size: '22rem', bottom: '-6rem', right: '28%', color: 'rgba(196, 206, 195, 0.1)' },
+      { size: '32rem', top: '-10rem', right: '-10rem', color: 'rgba(222, 198, 205, 0.12)' },
+      { size: '28rem', top: '32vh', left: '-8rem', color: 'rgba(200, 215, 228, 0.1)' },
+      { size: '22rem', bottom: '-6rem', right: '28%', color: 'rgba(208, 221, 210, 0.1)' },
     ],
   },
 }
@@ -182,7 +184,7 @@ export const siteContent = {
       items: [
         { name: 'Docker Compose', version: 'Dev / Prod', desc: '项目根目录内提供应用、数据库与缓存的联动启动方案。' },
         { name: 'Nginx', version: 'Deploy', desc: '部署目录保留了反向代理配置，适配正式环境的静态资源与接口转发。' },
-        { name: 'Test Suites', version: 'Flutter + Node', desc: '仓库中包含提醒、相册、AI 流程和缓存等测试，帮助核心链路持续收敛。' },
+        { name: 'Test Suites', version: 'Flutter + Node', desc: '已覆盖提醒、相册、AI 流程和缓存等测试，帮助核心链路持续稳定。' },
       ],
     },
   ],
@@ -194,7 +196,7 @@ export const siteContent = {
         '设置页支持跟随系统、浅色、深色三种显示模式',
         '主题样式整理为柔岚、月雾、神树、虚霭、浅砂五套预设',
         '补齐提醒、相册、AI 缓存与首页相关测试用例',
-        '官网文案与实际代码结构重新对齐',
+        '产品信息与能力说明进一步梳理',
       ],
     },
     {
@@ -203,7 +205,7 @@ export const siteContent = {
       highlights: [
         '首页、今日提醒、打卡与识别相册链路进一步稳定',
         '后端保留 JWT、MongoDB、MySQL、Redis 的组合部署方案',
-        '官网开始接入运行时 manifest 与真实截图能力',
+        '站点开始接入运行时清单与真实截图展示',
       ],
     },
     {
@@ -261,7 +263,7 @@ export const siteContent = {
         screen: {
           tag: 'Camera Sync',
           headline: '识别页更像一个后续动作分发点',
-          body: '识别完成之后，不是只给一个结果，而是把继续处理这次识别的入口集中留在这里。',
+          body: '识别完成后，页面会集中呈现继续处理当前结果的常用入口。',
           panels: [
             { title: '识别反馈', value: '可再次识别' },
             { title: '保存动作', value: '加入相册' },
@@ -333,7 +335,7 @@ export const siteContent = {
         screen: {
           tag: 'Memory Fold',
           headline: '识别记录会被轻量留存下来',
-          body: '页面同时说明了本地保存和登录后同步之间的关系，重点是留存策略而不是视觉炫技。',
+          body: '页面同时说明了本地保存和登录后同步之间的关系，重点是留存策略与回看效率。',
           panels: [
             { title: '归档方式', value: '轻量记录' },
             { title: '同步策略', value: '登录后可同步' },
@@ -355,7 +357,7 @@ export const siteContent = {
     {
       value: '01',
       title: '功能不是散点，而是闭环',
-      body: '搜索、扫描、药品详情、提醒、打卡和相册回看都能在当前仓库里找到实际页面和控制器。',
+      body: '搜索、扫描、药品详情、提醒、打卡和相册回看覆盖从查找到复查的主要环节。',
     },
     {
       value: '02',
@@ -365,7 +367,7 @@ export const siteContent = {
     {
       value: '03',
       title: '视觉是可调的，不是一种固定皮肤',
-      body: '源码里已经提供跟随系统、浅色、深色三种模式，以及柔岚到浅砂五套预设主题。',
+      body: '支持跟随系统、浅色、深色三种模式，以及柔岚到浅砂五套预设主题。',
     },
   ],
   featureGroups: [
@@ -380,7 +382,7 @@ export const siteContent = {
           title: '拍照识别',
           body: '通过相机或图库输入药盒、药板图片，进入候选确认与结果阅读流程。',
           detail:
-            '源码中包含扫描页面、识别控制器、图像处理工具与识别 API，说明这不是展示用占位，而是实际主流程的一部分。',
+            '识别流程覆盖图片输入、候选确认与结果阅读，方便从拍照快速进入后续查询与留存。',
           bullets: ['拍照 / 图库输入', '候选确认', '识别结果可回看'],
           facts: ['页面路由已接入', '扫描与后续详情互通'],
           span: 'wide',
@@ -390,7 +392,7 @@ export const siteContent = {
           title: '手动搜索',
           body: '当拍照不方便时，仍能通过名称查询药品并进入同一套详情阅读结构。',
           detail:
-            '搜索页、药物详情页和查询 API 都已经在主项目中存在，适合作为识别之外的稳定备用入口。',
+            '搜索页与药品详情协同工作，在不便拍照时仍能提供稳定直接的查药入口。',
           bullets: ['名称查询', '结果列表', '可直接进入详情'],
           facts: ['搜索路由独立存在', '与详情页共用结果终点'],
         },
@@ -416,7 +418,7 @@ export const siteContent = {
           title: '用药提醒',
           body: '按计划触发本地提醒，让药物节奏从“记在脑子里”变成“交给系统提醒”。',
           detail:
-            '仓库内同时存在提醒页、编辑页、控制器、本地网关与通知服务，说明提醒流程已经形成相对完整的实现面。',
+            '提醒流程覆盖提醒列表、提醒编辑、本地通知与结果确认，便于形成稳定的日常节奏。',
           bullets: ['提醒列表', '提醒编辑', '本地通知'],
           facts: ['相关测试已存在', '本地优先的实现思路明确'],
           span: 'wide',
@@ -435,7 +437,7 @@ export const siteContent = {
           title: '用药打卡',
           body: '从提醒进入打卡，帮助用户知道自己今天是否真正完成了计划。',
           detail:
-            '打卡页、控制器和测试都已经在项目里落地，说明“提醒之后怎么确认”这一层已经被认真处理。',
+            '打卡环节让提醒与完成确认自然衔接，更适合长期记录和后续回看。',
           bullets: ['完成确认', '打卡记录', '更利于长期追踪'],
           facts: ['打卡页面独立存在', '与提醒节奏配合'],
         },
@@ -452,7 +454,7 @@ export const siteContent = {
           title: 'AI 辅助解读',
           body: '把机械化的说明内容转成更适合普通用户扫读的语言。',
           detail:
-            '后端保留了 AI prompt、客户端保留了 AI 相关流程测试，这说明 AI 在项目中承担的是解释层，而不是装饰层。',
+            'AI 辅助用于提炼重点信息与注意事项，帮助普通用户更快抓住需要理解的内容。',
           bullets: ['重点提炼', '注意事项', '更低的阅读负担'],
           facts: ['仅作辅助参考', '依赖服务端 AI 能力'],
         },
@@ -471,7 +473,7 @@ export const siteContent = {
           title: '识别相册与历史',
           body: '把缩略图、识别结果与历史摘要沉淀下来，方便回看与复查。',
           detail:
-            '相册页、控制器、本地资源与本地存储测试都已经存在，说明历史沉淀是产品中的真实能力，不只是官网概念。',
+            '识别结果会沉淀为可回看的历史资料，方便后续检索、对照与减少重复识别。',
           bullets: ['缩略图回看', '历史摘要', '减少重复识别'],
           facts: ['本地存储方案已接入', '相册有专项测试'],
         },
@@ -501,7 +503,7 @@ export const siteContent = {
       label: 'Scene 02',
       en: 'Read and Keep',
       shotId: 'recognition-album',
-      title: '读懂这次结果，也把它留给未来的自己',
+      title: '读懂本次结果，也把它留给未来的自己',
       body: 'AI 解读、药品信息与识别相册会把一次偶发的查看，变成之后还能继续利用的个人资料。',
       points: ['识别结果可沉淀', '药物详情更容易回看', '相册帮助减少重复识别'],
       screen: {
@@ -538,7 +540,7 @@ export const siteContent = {
     status: 'Core Features',
     title: '把查药、识药、记药拆开说清楚，也把它们重新接成闭环',
     body:
-      '这不是把功能表简单堆上墙，而是把仓库里已经存在的页面、控制器、接口和测试翻译成一张更容易理解的官网地图。',
+      '页面围绕查药、识药、提醒、打卡与历史沉淀展开，让用户更快理解产品如何支撑完整的用药管理流程。',
     primaryAction: {
       label: '查看体验路径',
       note: 'Experience',
@@ -552,7 +554,7 @@ export const siteContent = {
   },
   experienceMeta: {
     status: 'Experience Design',
-    title: '体验不是炫技，而是让信息在正确的时刻出现',
+    title: '让信息在正确的时刻出现，是体验设计的关键',
     body:
       '从入口统一、结果沉淀到提醒节奏，Luminous 想做的是一条更适合长期使用的用药路径，而不是短暂惊艳的演示稿。',
     primaryAction: {
@@ -570,7 +572,7 @@ export const siteContent = {
     status: 'Use Cases',
     title: '越贴近日常，工具才越有机会被真正留下来',
     body:
-      '从家庭药箱整理，到长期提醒和照护协作，这些场景都能在当前源码能力里找到对应的支撑点。',
+      '从家庭药箱整理，到长期提醒和照护协作，产品都围绕日常用药管理场景提供对应支持。',
     primaryAction: {
       label: '查看关于页面',
       note: 'About Luminous',
@@ -584,7 +586,7 @@ export const siteContent = {
   },
   aboutMeta: {
     status: 'About Us',
-    title: '官网叙事回到真实代码之上，产品才更有说服力',
+    title: '以清晰架构支撑稳定的用药管理体验',
     body:
       'Luminous 目前是一套以 Flutter App + Node/Express 后端为核心的全栈项目，重点验证的是移动端真实可用的用药管理闭环。',
     primaryAction: {
@@ -600,9 +602,9 @@ export const siteContent = {
   },
   privacyMeta: {
     status: 'Privacy Policy',
-    title: '透明、克制、只说当前代码和产品定位能支持的那部分',
+    title: '透明、克制地说明数据范围与使用边界',
     body:
-      '我们不把隐私页面写成万能承诺书，而是尽量把当前数据流向、AI 参与时机和用户控制权说得具体清楚。',
+      '我们重点说明数据流向、AI 参与时机与用户控制权，帮助你清楚了解产品如何处理信息。',
     primaryAction: {
       label: '返回首页',
       note: 'Back Home',
@@ -616,9 +618,9 @@ export const siteContent = {
   },
   homeMeta: {
     status: 'Official Website',
-    title: '一套更克制的用药工具官网，也该像产品本身一样清楚',
+    title: '清晰、克制的用药工具，应当提供一目了然的产品信息',
     body:
-      '官网现在更强调真实实现与温和表达：主项目里有什么，官网就说什么；真正做到了什么，就把它说得更好懂。',
+      '围绕查药、识药、提醒与安全辅助，站点以清晰直接的方式呈现产品能力与使用路径。',
     primaryAction: {
       label: '查看功能全景',
       note: 'Feature Map',
@@ -636,9 +638,10 @@ export const siteContent = {
     body:
       '当运行时 manifest 在线时，这里会切换成真实版本号、更新时间、下载链接与截图；离线时则保持静态展示，不制造失真的承诺。',
     primaryAction: {
-      label: '查看当前下载状态',
-      note: 'Runtime Manifest',
-      href: '',
+      label: '下载预览图片',
+      note: 'PNG Preview',
+      href: previewImage,
+      download: 'luminous-home-preview.png',
     },
     secondaryAction: {
       label: '返回首页',
@@ -654,7 +657,7 @@ export const siteContent = {
       {
         name: 'Display Modes',
         status: '系统 / 浅色 / 深色',
-        detail: '主题模式与五套预设风格都已经在设置能力中落地，官网也同步改成更温和的浅色基调。',
+        detail: '主题模式与五套预设风格已经落地，兼顾浅色层次、阅读舒适度与品牌统一感。',
       },
       {
         name: 'Backend',
@@ -675,14 +678,14 @@ export const siteContent = {
         '不是。它的定位是智慧用药助手，重点在查药、识药、提醒、打卡、AI 解读与风险辅助。任何提示都不替代医生或药师建议。',
     },
     {
-      question: '当前项目已经有哪些真实页面？',
+      question: '目前包含哪些核心页面？',
       answer:
-        '从主仓库可以看到首页、搜索、扫描、提醒、打卡、安全辅助、设置、相册、登录注册等页面与对应控制器，官网文案已经按这些真实能力收口。',
+        '当前包含首页、搜索、扫描、提醒、打卡、安全辅助、设置、相册、登录注册等核心页面，覆盖从查药到记录的主要环节。',
     },
     {
       question: '支持哪些主题和显示模式？',
       answer:
-        '当前源码里提供跟随系统、浅色、深色三种显示模式，以及柔岚、月雾、神树、虚霭、浅砂五套预设主题风格。',
+        '产品提供跟随系统、浅色、深色三种显示模式，以及柔岚、月雾、神树、虚霭、浅砂五套预设主题风格。',
     },
     {
       question: '哪些能力更依赖网络？',
@@ -690,9 +693,9 @@ export const siteContent = {
         '药品查询、拍照识别、AI 解读和安全辅助更依赖服务端或网络能力；提醒、部分历史沉淀和本地视图则更强调本地优先。',
     },
     {
-      question: '为什么官网不再强调很夸张的准确率或速度？',
+      question: '为什么没有展示夸张的准确率或速度数字？',
       answer:
-        '因为这次重构更看重“与源码能力一致”。官网会优先呈现当前仓库里真正可以被验证的页面、接口、主题和数据链路，而不是难以核实的宣传数字。',
+        '我们更重视清晰准确地说明产品能力，因此优先展示功能范围、使用路径与可感知体验，而不是难以核实的宣传数字。',
     },
     {
       question: '现在的后端架构是什么？',
@@ -707,17 +710,17 @@ export const siteContent = {
     {
       question: 'AI 解读和安全辅助会越界吗？',
       answer:
-        '不会。官网与产品都把它们定义成“辅助理解”和“提前提醒风险”的能力，重点在帮助你继续核对，而不是直接代替专业判断。',
+        '不会。AI 解读与安全辅助定位为辅助理解和风险提醒，重点在帮助你继续核对，而不是直接代替专业判断。',
     },
     {
       question: '我的数据会被卖给第三方吗？',
       answer:
-        '当前产品定位不以售卖个人数据为目的。官网里的相关表述已经收敛为更保守的版本，只描述当前项目的真实数据流向与用户控制权。',
+        '产品定位不以售卖个人数据为目的，并会围绕实际数据流向、权限边界与用户控制权进行说明。',
     },
     {
       question: 'iOS 或其他平台怎么理解？',
       answer:
-        '仓库里已经保留 iOS、Web、Linux、macOS、Windows 等平台工程，但当前对外重点验证仍是 Android 主流程体验。',
+        '产品已预留 iOS、Web、Linux、macOS、Windows 等平台适配基础，现阶段对外仍以 Android 主流程体验为重点。',
     },
   ],
   footerLinks: [
@@ -824,7 +827,7 @@ export const siteContent = {
       {
         icon: '👨‍👩‍👧',
         segment: '家庭照护协助',
-        title: '当你不是为自己管理时，清晰感比炫技更重要',
+        title: '当你不是为自己管理时，清晰感比复杂表达更重要',
         description: '照护者通常需要替家人查药、记药、回看记录。工具必须足够清楚，才能减少沟通误差。',
         story: [
           {
@@ -870,7 +873,7 @@ export const siteContent = {
           },
           {
             title: '按需申请设备权限',
-            detail: '相机、相册等权限只在对应功能发生时才有意义，不会因为浏览官网文案就被包装成“默认必须”。',
+            detail: '相机、相册等权限只在对应功能发生时才有意义，不会被默认设置为无差别常驻权限。',
           },
         ],
       },
@@ -879,7 +882,7 @@ export const siteContent = {
         items: [
           {
             title: '客户端本地存储',
-            detail: '项目中已经接入了 sqflite、shared_preferences 与本地提醒相关能力，本地优先是当前产品实现的重要方向。',
+            detail: '产品已接入 sqflite、shared_preferences 与本地提醒相关能力，本地优先是当前实现的重要方向。',
           },
           {
             title: '服务端数据分层',
@@ -904,7 +907,7 @@ export const siteContent = {
           },
           {
             title: '边界表达',
-            detail: '官网和产品都把 AI 输出定位为辅助理解文本，而不是医疗诊断或最终结论。',
+            detail: 'AI 输出定位为辅助理解文本，而不是医疗诊断或最终结论。',
           },
         ],
       },
@@ -917,7 +920,7 @@ export const siteContent = {
           },
           {
             title: '编辑与删除',
-            detail: '提醒、历史条目和账户信息应当由用户自己决定是否保留，这也是官网文案收口后的核心原则之一。',
+            detail: '提醒、历史条目和账户信息应当由用户自己决定是否保留，这是产品设计中的重要原则。',
           },
           {
             title: '停止某类能力',
@@ -930,11 +933,11 @@ export const siteContent = {
         items: [
           {
             title: '只承诺当前看得到的架构',
-            detail: '比如 JWT、数据库分层、本地优先与按需权限，这些都能在当前仓库里找到直接对应的实现或配置。',
+            detail: '例如 JWT、数据库分层、本地优先与按需权限，这些机制共同构成当前的数据处理与保护基础。',
           },
           {
             title: '不夸大“绝对安全”',
-            detail: '任何涉及网络、账户和第三方服务的产品都不存在绝对风险为零的说法，所以官网会尽量避免不必要的绝对化措辞。',
+            detail: '任何涉及网络、账户和第三方服务的产品都不存在绝对风险为零的说法，因此我们会避免不必要的绝对化措辞。',
           },
           {
             title: '辅助工具定位明确',
@@ -947,11 +950,11 @@ export const siteContent = {
         items: [
           {
             title: '以产品迭代同步更新',
-            detail: '当数据流、AI 参与方式或导出删除能力发生明显变化时，官网与应用内文案都应同步调整。',
+            detail: '当数据流、AI 参与方式或导出删除能力发生明显变化时，本页与应用内说明会同步更新。',
           },
           {
             title: '通过项目渠道沟通',
-            detail: '当前更现实的沟通入口是应用内反馈与项目仓库 issue，官网不再展示未经确认的联系邮箱。',
+            detail: '当前更合适的沟通入口是应用内反馈与版本更新说明，便于及时了解能力变化与处理方式。',
           },
         ],
       },

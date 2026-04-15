@@ -27,8 +27,8 @@ const props = defineProps({
           <span class="hero-title-line2" data-hero-item>{{ props.brand.cnName }}</span>
         </div>
         <p class="hero-scene__lead" data-hero-item>
-          这次官网重构回到真实源码能力之上，把查药、识药、提醒、打卡、AI 解读和安全辅助整理成一条
-          更温和、更清楚、也更可信的产品叙事。
+          围绕查药、识药、提醒、打卡、AI 解读与安全辅助，提供清晰连贯的用药辅助体验，
+          帮助用户更高效地理解信息、管理节奏并完成后续复查。
         </p>
 
         <div class="hero-scene__actions" data-hero-item>

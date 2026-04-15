@@ -17,17 +17,17 @@ const sourceFacts = [
   {
     label: '真实页面',
     value: '首页 / 搜索 / 扫描 / 提醒 / 打卡 / 安全辅助',
-    body: '这些页面和控制器都已经在 Flutter 主项目里存在，官网不再用抽象概念替代真实路由。',
+    body: '覆盖首页、搜索、扫描、提醒、打卡与安全辅助等核心页面，主要功能入口完整清晰。',
   },
   {
     label: '显示模式',
     value: '跟随系统 / 浅色 / 深色',
-    body: '这次官网也同步切到更柔和的浅色莫兰迪基调，和应用里强调的可切换体验保持一致。',
+    body: '支持跟随系统、浅色与深色三种显示模式，适配不同设备环境与阅读习惯。',
   },
   {
     label: '主题预设',
     value: '柔岚 / 月雾 / 神树 / 虚霭 / 浅砂',
-    body: '五套预设主题来自应用设置能力本身，而不是官网临时编出来的展示词。',
+    body: '提供五套主题预设，让界面在保持统一秩序的同时具备更细腻的视觉层次。',
   },
 ]
 
@@ -50,17 +50,62 @@ const rhythmSteps = [
 ]
 
 const themeModes = [
-  { title: '跟随系统', desc: '适合把应用放进日常设备环境里，不强迫你学习另一套视觉节奏。', tone: 'auto' },
-  { title: '浅色模式', desc: '更适合白天高频查看信息，这次官网重构也以它作为主调。', tone: 'light' },
-  { title: '深色模式', desc: '在夜间或暗光环境下减少刺激感，和提醒、打卡等高频页面更好配合。', tone: 'dark' },
+  {
+    title: '跟随系统',
+    desc: '适合把应用放进日常设备环境里，不强迫你学习另一套视觉节奏。',
+    tone: 'auto',
+    palette: ['#C7D5E6', '#E6D6C9', '#D4E1D1'],
+  },
+  {
+    title: '浅色模式',
+    desc: '适合白天高频查看信息，界面明快柔和，便于长时间阅读。',
+    tone: 'light',
+    palette: ['#D8E5F0', '#F3DDCF', '#E3E7CC'],
+  },
+  {
+    title: '深色模式',
+    desc: '在夜间或暗光环境下减少刺激感，和提醒、打卡等高频页面更好配合。',
+    tone: 'dark',
+    palette: ['#5D5961', '#847A78', '#8A92A1'],
+  },
 ]
 
 const themePresets = [
-  { name: '柔岚', desc: '淡蓝、浅紫和暖金并置，明快但不刺眼。' },
-  { name: '月雾', desc: '冷蓝为主，像月光下的薄雾，气质更静。' },
-  { name: '神树', desc: '黄绿与柔金交织，更适合强调生机和秩序感。' },
-  { name: '虚霭', desc: '偏紫主调里带一点蓝光，保留轻微的层次感。' },
-  { name: '浅砂', desc: '奶茶、枯粉和陶土色更克制，接近日常器物感。' },
+  {
+    name: '柔岚',
+    mood: '轻盈明快',
+    desc: '淡蓝、浅紫和暖金并置，明快但不刺眼。',
+    palette: ['#CFE1F3', '#E7D8EE', '#F1E1B9'],
+    tone: 'soft-glow',
+  },
+  {
+    name: '月雾',
+    mood: '冷静通透',
+    desc: '冷蓝为主，像月光下的薄雾，气质更静。',
+    palette: ['#D5E3F6', '#C7D5F2', '#E7EDF6'],
+    tone: 'moon-mist',
+  },
+  {
+    name: '神树',
+    mood: '生机秩序',
+    desc: '黄绿与柔金交织，更适合强调生机和秩序感。',
+    palette: ['#DCE6BE', '#C8D49F', '#E7D6A8'],
+    tone: 'divine-tree',
+  },
+  {
+    name: '虚霭',
+    mood: '朦胧层次',
+    desc: '偏紫主调里带一点蓝光，保留轻微的层次感。',
+    palette: ['#DCCEF2', '#C9BEE7', '#D8DEF4'],
+    tone: 'illusion',
+  },
+  {
+    name: '浅砂',
+    mood: '日常器物',
+    desc: '奶茶、枯粉和陶土色更克制，接近日常器物感。',
+    palette: ['#E9D7C8', '#DDBFBA', '#E9E0D5'],
+    tone: 'light-sand',
+  },
 ]
 
 const featuredShots = computed(() =>
@@ -88,18 +133,18 @@ const anchoredFeatures = computed(() =>
     <div class="page__container">
       <section class="home-editorial">
         <div class="home-editorial__copy">
-          <span class="home-kicker">Refined Official Site</span>
-          <h2>官网从“会发光的宣传页”回到“能解释产品的门面”</h2>
+          <span class="home-kicker">Product Overview</span>
+          <h2>围绕识药、懂药、记药，建立清晰连续的用药体验</h2>
           <p>
-            这次重构不再堆高概念词汇，而是按真实源码去讲产品：查药、识药、提醒、打卡、
-            AI 解读和安全辅助分别做什么，怎样接成一条能长期使用的路径。
+            Luminous 面向日常用药管理场景，整合查药、拍照识别、提醒、打卡、AI 解读与安全辅助，
+            让信息获取、重点理解与后续执行自然衔接。
           </p>
           <div class="home-editorial__actions">
             <RouterLink to="/features" class="home-link home-link--primary">
               查看功能全景
             </RouterLink>
             <RouterLink to="/about" class="home-link home-link--secondary">
-              对照项目结构
+              了解产品与架构
             </RouterLink>
           </div>
         </div>
@@ -116,8 +161,8 @@ const anchoredFeatures = computed(() =>
       <GlassSection
         id="features"
         eyebrow="Source-Aligned Features"
-        title="从当前源码里，能看到一条很完整的三段式能力链"
-        lead="它不是炫技式的功能墙，而是按真实页面、控制器、接口和本地能力整理出来的产品地图。"
+        title="从查药到提醒，形成完整的用药辅助链路"
+        lead="功能围绕查找、理解、提醒与复查展开，帮助用户在一次使用之后继续完成后续管理。"
       >
         <div class="anchor-grid">
           <article v-for="group in anchoredFeatures" :key="group.title" class="anchor-card">
@@ -158,8 +203,8 @@ const anchoredFeatures = computed(() =>
 
       <GlassSection
         eyebrow="Runtime Gallery"
-        title="官网里的截图，不只是装饰，也是在给功能叙事落锚点"
-        lead="当运行时媒体在线时，这里会优先展示真实截图；离线时则回退到同样遵循产品结构的 mockup。"
+        title="核心界面示意，对应主要使用环节"
+        lead="页面示意展示识别、搜索与安全辅助等核心体验；运行时素材在线时会优先展示最新截图。"
       >
         <div class="home-shot-grid">
           <RuntimeShotCard
@@ -176,29 +221,62 @@ const anchoredFeatures = computed(() =>
       <section class="theme-studio">
         <div class="theme-studio__copy">
           <span class="home-kicker">Theme System</span>
-          <h2>视觉风格这次也收口到更柔和的浅色莫兰迪体系</h2>
+          <h2>浅色莫兰迪配色，让信息层次更柔和</h2>
           <p>
-            主应用里已经有显示模式与主题预设，这次官网不再抢戏，而是借用同样的气质去做更安静、
-            更耐看的官方门面。
+            产品支持显示模式切换与多套主题预设，页面在保持统一品牌气质的同时，
+            兼顾阅读舒适度与层次辨识度。
           </p>
         </div>
 
-        <div class="theme-studio__modes">
-          <article
-            v-for="mode in themeModes"
-            :key="mode.title"
-            class="mode-card"
-            :class="`mode-card--${mode.tone}`"
-          >
-            <h3>{{ mode.title }}</h3>
-            <p>{{ mode.desc }}</p>
-          </article>
+        <div class="theme-studio__surface">
+          <div class="theme-studio__modes">
+            <article
+              v-for="mode in themeModes"
+              :key="mode.title"
+              class="mode-card"
+              :class="`mode-card--${mode.tone}`"
+            >
+              <div class="mode-card__palette">
+                <i
+                  v-for="color in mode.palette"
+                  :key="color"
+                  :style="{ background: color }"
+                ></i>
+              </div>
+              <h3>{{ mode.title }}</h3>
+              <p>{{ mode.desc }}</p>
+            </article>
+          </div>
+
+          <div class="theme-studio__swash-grid">
+            <span class="theme-studio__swash theme-studio__swash--blue"></span>
+            <span class="theme-studio__swash theme-studio__swash--pink"></span>
+            <span class="theme-studio__swash theme-studio__swash--sage"></span>
+            <span class="theme-studio__swash theme-studio__swash--sand"></span>
+            <span class="theme-studio__swash theme-studio__swash--lavender"></span>
+            <span class="theme-studio__swash theme-studio__swash--mist"></span>
+          </div>
         </div>
 
         <div class="theme-studio__presets">
-          <article v-for="preset in themePresets" :key="preset.name" class="preset-chip">
-            <strong>{{ preset.name }}</strong>
-            <p>{{ preset.desc }}</p>
+          <article
+            v-for="preset in themePresets"
+            :key="preset.name"
+            class="preset-chip"
+            :class="`preset-chip--${preset.tone}`"
+          >
+            <div class="preset-chip__palette">
+              <i
+                v-for="color in preset.palette"
+                :key="color"
+                :style="{ background: color }"
+              ></i>
+            </div>
+            <div class="preset-chip__copy">
+              <span>{{ preset.mood }}</span>
+              <strong>{{ preset.name }}</strong>
+              <p>{{ preset.desc }}</p>
+            </div>
           </article>
         </div>
       </section>
@@ -220,8 +298,14 @@ const anchoredFeatures = computed(() =>
   align-items: stretch;
 }
 
+.theme-studio {
+  align-items: stretch;
+}
+
 .home-editorial__copy,
 .theme-studio__copy {
+  position: relative;
+  overflow: hidden;
   padding: 2rem;
   border: 1px solid rgba(135, 121, 112, 0.12);
   border-radius: 2rem;
@@ -272,6 +356,8 @@ const anchoredFeatures = computed(() =>
 }
 
 .home-link {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -280,6 +366,17 @@ const anchoredFeatures = computed(() =>
   border-radius: 999px;
   font-weight: 600;
   transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.home-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 18%, rgba(255, 255, 255, 0.26) 34%, transparent 52%);
+  opacity: 0;
+  transform: translateX(-22%);
+  transition: opacity 0.28s ease, transform 0.4s ease;
+  pointer-events: none;
 }
 
 .home-link--primary {
@@ -448,10 +545,15 @@ const anchoredFeatures = computed(() =>
   align-items: start;
 }
 
+.theme-studio__surface,
 .theme-studio__modes,
 .theme-studio__presets {
   display: grid;
   gap: 1rem;
+}
+
+.theme-studio__surface {
+  grid-template-rows: auto 1fr;
 }
 
 .theme-studio__modes {
@@ -463,16 +565,95 @@ const anchoredFeatures = computed(() =>
   padding: 1.35rem;
 }
 
+.home-editorial__copy::before,
+.theme-studio__copy::before,
+.fact-card::before,
+.anchor-card::before,
+.rhythm-card::before,
+.mode-card::before,
+.preset-chip::before {
+  content: '';
+  position: absolute;
+  inset: auto -14% -38% auto;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  background: rgba(215, 199, 187, 0.22);
+  opacity: 0;
+  filter: blur(24px);
+  transform: scale(0.82);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.theme-studio__swash,
+.anchor-item {
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, background-color 0.28s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-editorial__copy:hover,
+  .theme-studio__copy:hover,
+  .fact-card:hover,
+  .anchor-card:hover,
+  .rhythm-card:hover,
+  .mode-card:hover,
+  .preset-chip:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 52px rgba(126, 111, 103, 0.12);
+    border-color: rgba(135, 121, 112, 0.2);
+  }
+
+  .home-editorial__copy:hover::before,
+  .theme-studio__copy:hover::before,
+  .fact-card:hover::before,
+  .anchor-card:hover::before,
+  .rhythm-card:hover::before,
+  .mode-card:hover::before,
+  .preset-chip:hover::before {
+    opacity: 0.88;
+    transform: scale(1);
+  }
+
+  .home-link:hover::after {
+    opacity: 1;
+    transform: translateX(12%);
+  }
+
+  .anchor-card:hover .anchor-item {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px rgba(126, 111, 103, 0.08);
+    border-color: rgba(135, 121, 112, 0.14);
+    background: rgba(255, 255, 255, 0.82);
+  }
+
+  .theme-studio__swash:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 18px 28px rgba(126, 111, 103, 0.12);
+  }
+
+  .preset-chip:hover .preset-chip__palette i,
+  .mode-card:hover .mode-card__palette i {
+    transform: translateY(-2px);
+  }
+}
+
 .mode-card--auto {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(242, 237, 232, 0.9));
+  background:
+    radial-gradient(circle at top right, rgba(199, 213, 230, 0.22), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(242, 239, 236, 0.92));
 }
 
 .mode-card--light {
-  background: linear-gradient(180deg, rgba(255, 252, 248, 0.92), rgba(245, 238, 231, 0.92));
+  background:
+    radial-gradient(circle at top right, rgba(243, 221, 207, 0.26), transparent 34%),
+    linear-gradient(180deg, rgba(255, 252, 248, 0.94), rgba(245, 238, 231, 0.94));
 }
 
 .mode-card--dark {
-  background: linear-gradient(180deg, rgba(94, 87, 84, 0.92), rgba(72, 66, 64, 0.96));
+  background:
+    radial-gradient(circle at top right, rgba(138, 146, 161, 0.14), transparent 32%),
+    linear-gradient(180deg, rgba(94, 87, 84, 0.92), rgba(72, 66, 64, 0.96));
 }
 
 .mode-card--dark h3,
@@ -480,14 +661,136 @@ const anchoredFeatures = computed(() =>
   color: rgba(246, 239, 233, 0.92);
 }
 
+.mode-card__palette,
+.preset-chip__palette {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.mode-card__palette {
+  margin-bottom: 1rem;
+}
+
+.mode-card__palette i,
+.preset-chip__palette i {
+  display: block;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+}
+
+.mode-card__palette i {
+  width: 2.1rem;
+  height: 0.65rem;
+}
+
+.theme-studio__swash-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding: 1rem;
+  border-radius: 1.6rem;
+  border: 1px solid rgba(135, 121, 112, 0.12);
+  background:
+    radial-gradient(circle at top left, rgba(212, 223, 236, 0.24), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 241, 236, 0.92));
+  box-shadow: 0 22px 44px rgba(126, 111, 103, 0.08);
+}
+
+.theme-studio__swash {
+  display: block;
+  min-height: 5.4rem;
+  border-radius: 1.3rem;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+.theme-studio__swash--blue {
+  background: linear-gradient(180deg, #d9e7f4, #c3d5e7);
+}
+
+.theme-studio__swash--pink {
+  background: linear-gradient(180deg, #efdfd5, #e2c7be);
+}
+
+.theme-studio__swash--sage {
+  background: linear-gradient(180deg, #dce7d9, #c5d5c0);
+}
+
+.theme-studio__swash--sand {
+  background: linear-gradient(180deg, #efe1d5, #dfc9b8);
+}
+
+.theme-studio__swash--lavender {
+  background: linear-gradient(180deg, #e4d8ef, #cabde2);
+}
+
+.theme-studio__swash--mist {
+  background: linear-gradient(180deg, #e8edf2, #d2dbe5);
+}
+
 .theme-studio__presets {
+  grid-column: 1 / -1;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-top: 1rem;
+}
+
+.preset-chip {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1rem;
+  min-height: 15rem;
+}
+
+.preset-chip__palette i {
+  width: 100%;
+  height: 0.9rem;
+}
+
+.preset-chip__copy {
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+}
+
+.preset-chip__copy span {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(109, 95, 89, 0.64);
 }
 
 .preset-chip strong {
   color: rgba(72, 59, 53, 0.95);
   font-size: 1rem;
+}
+
+.preset-chip--soft-glow {
+  background:
+    radial-gradient(circle at top right, rgba(207, 225, 243, 0.32), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 241, 236, 0.9));
+}
+
+.preset-chip--moon-mist {
+  background:
+    radial-gradient(circle at top right, rgba(213, 227, 246, 0.32), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(241, 244, 248, 0.92));
+}
+
+.preset-chip--divine-tree {
+  background:
+    radial-gradient(circle at top right, rgba(220, 230, 190, 0.34), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 244, 235, 0.92));
+}
+
+.preset-chip--illusion {
+  background:
+    radial-gradient(circle at top right, rgba(220, 206, 242, 0.34), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 240, 247, 0.92));
+}
+
+.preset-chip--light-sand {
+  background:
+    radial-gradient(circle at top right, rgba(233, 215, 200, 0.34), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 241, 237, 0.92));
 }
 
 @media (max-width: 1180px) {
@@ -499,6 +802,10 @@ const anchoredFeatures = computed(() =>
   .theme-studio__modes,
   .theme-studio__presets {
     grid-template-columns: 1fr;
+  }
+
+  .theme-studio__swash-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

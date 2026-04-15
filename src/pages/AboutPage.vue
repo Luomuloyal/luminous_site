@@ -32,7 +32,7 @@ const milestones = [
   { year: '阶段 2', event: '补齐安全辅助与识别相册，形成可回看的闭环体验' },
   { year: '阶段 3', event: '后端迁移到云服务器并推进 RESTful API 规范改造' },
   { year: '阶段 4', event: '建立双数据库架构：MongoDB 用户数据 + MySQL 药品数据' },
-  { year: '阶段 5', event: '官网接入运行时清单，支持真实截图和下载信息同步' },
+  { year: '阶段 5', event: '站点接入运行时清单，支持版本与截图信息同步更新' },
 ]
 
 const architectureFacts = [
@@ -111,7 +111,7 @@ const values = [
       <GlassSection
         eyebrow="Project Modules"
         title="产品是如何被拼起来的"
-        lead="这里展示的是当前项目的真实模块分工，而不是抽象的人设化描述。"
+        lead="从移动端、服务端到数据层，各模块围绕同一套用药管理流程协同工作。"
       >
         <div class="team-grid">
           <article v-for="member in teamMembers" :key="member.name" class="team-card">
@@ -214,8 +214,10 @@ const values = [
 .value-card {
   padding: 1.5rem;
   border-radius: 1.2rem;
-  background: var(--surface-panel);
-  border: var(--surface-border);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--route-accent) 18%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), color-mix(in srgb, white 86%, var(--route-accent-tertiary) 14%));
+  border: 1px solid var(--route-border);
 }
 
 .value-card h3 {
@@ -243,8 +245,10 @@ const values = [
   gap: 1rem;
   padding: 1.5rem;
   border-radius: 1.2rem;
-  background: var(--surface-panel);
-  border: var(--surface-border);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--route-accent-secondary) 18%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, white 88%, var(--route-accent-tertiary) 12%));
+  border: 1px solid var(--route-border);
 }
 
 .team-card__avatar {
@@ -345,8 +349,10 @@ const values = [
 
 .techstack-category {
   padding: 1.75rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(245, 247, 250, 0.85));
-  border: 1px solid rgba(100, 116, 139, 0.12);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--route-accent) 18%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, white 88%, var(--route-accent-secondary) 12%));
+  border: 1px solid var(--route-border);
   border-radius: 0.75rem;
 }
 
@@ -386,7 +392,7 @@ const values = [
 
 .item-version {
   font-size: 0.75rem;
-  background: var(--route-accent);
+  background: linear-gradient(135deg, var(--route-accent), var(--route-accent-secondary));
   color: #fff;
   padding: 0.25rem 0.75rem;
   border-radius: 0.25rem;
@@ -409,8 +415,10 @@ const values = [
 
 .release-card {
   padding: 1.5rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(245, 247, 250, 0.8));
-  border: 1px solid rgba(100, 116, 139, 0.12);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--route-accent-tertiary) 18%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), color-mix(in srgb, white 86%, var(--route-accent-tertiary) 14%));
+  border: 1px solid var(--route-border);
   border-radius: 0.75rem;
   border-left: 4px solid var(--route-accent);
   transition: all 0.3s ease;

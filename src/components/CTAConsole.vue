@@ -109,6 +109,13 @@ function actionProps(action) {
   }
 
   if (action?.href) {
+    if (action?.download) {
+      return {
+        href: action.href,
+        download: action.download,
+      }
+    }
+
     return {
       href: action.href,
       target: '_blank',
@@ -288,6 +295,8 @@ function actionProps(action) {
 }
 
 .cta-console__button {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   padding: 1.2rem 1.75rem;
   box-sizing: border-box;
@@ -306,6 +315,32 @@ function actionProps(action) {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.cta-console__button::before {
+  content: '';
+  position: absolute;
+  inset: auto -12% -48% auto;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.34);
+  opacity: 0;
+  filter: blur(24px);
+  transform: scale(0.84);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.cta-console__button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 18%, rgba(255, 255, 255, 0.24) 34%, transparent 50%);
+  opacity: 0;
+  transform: translateX(-18%);
+  transition: opacity 0.3s ease, transform 0.42s ease;
+  pointer-events: none;
 }
 
 .cta-console__button span {
@@ -332,8 +367,8 @@ function actionProps(action) {
 .cta-console__button--primary:hover:not(.is-disabled) {
   background: linear-gradient(135deg, rgba(191, 166, 158, 0.24) 0%, rgba(215, 199, 187, 0.3) 100%);
   border-color: rgba(191, 166, 158, 0.3);
-  transform: translateY(-3px);
-  box-shadow: 0 18px 32px rgba(126, 111, 103, 0.11);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 36px rgba(126, 111, 103, 0.12);
 }
 
 .cta-console__button--secondary {
@@ -345,8 +380,18 @@ function actionProps(action) {
 .cta-console__button--secondary:hover:not(.is-disabled) {
   background: #ffffff;
   border-color: rgba(132, 120, 113, 0.22);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: 0 18px 30px rgba(126, 111, 103, 0.1);
+}
+
+.cta-console__button:hover:not(.is-disabled)::before {
+  opacity: 0.9;
+  transform: scale(1);
+}
+
+.cta-console__button:hover:not(.is-disabled)::after {
+  opacity: 1;
+  transform: translateX(10%);
 }
 
 .cta-console__button.is-disabled {

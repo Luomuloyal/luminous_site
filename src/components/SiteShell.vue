@@ -92,7 +92,7 @@ watch(
 
         <div class="site-footer__copy">
           <p>
-            官网里的功能、下载状态与文案描述，都会尽量和主项目源码保持一致。
+            围绕识别、提醒、历史记录与安全辅助，持续提供清晰一致的产品信息。
           </p>
           <small>
             AI 解读与安全辅助仅作信息参考，不替代专业医生或药师建议。
@@ -120,6 +120,7 @@ watch(
           target="_blank"
           rel="noreferrer"
         >
+          <img src="https://beian.mps.gov.cn/web/assets/logo01.6189a29f.png" alt="" width="16" height="16" />
           津公网安备12011602300919号
         </a>
       </div>

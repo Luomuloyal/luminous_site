@@ -32,7 +32,7 @@ const toggleSection = (index) => {
       <GlassSection
         eyebrow="Core Principle"
         title="把数据边界讲清楚，比写满口号更重要"
-        lead="这次重构后的隐私页只强调当前项目里可以被解释清楚的数据范围、AI 参与时机和用户控制权。"
+        lead="我们重点说明数据范围、AI 参与时机与用户控制方式，帮助你清楚了解产品如何处理信息。"
       >
         <div class="principles-grid">
           <article class="principle-card">
@@ -121,7 +121,7 @@ const toggleSection = (index) => {
           <article class="right-card">
             <span class="right-icon">🔗</span>
             <h4>可携带权</h4>
-            <p>导出与迁移能力会随着产品迭代继续完善，官网不再提前承诺还没落地好的具体格式。</p>
+            <p>导出与迁移能力会随着产品迭代持续完善，具体支持范围将以正式上线能力为准。</p>
             <span class="action-link">后续随版本同步</span>
           </article>
 
@@ -135,7 +135,7 @@ const toggleSection = (index) => {
           <article class="right-card">
             <span class="right-icon">❌</span>
             <h4>账户注销</h4>
-            <p>账户注销与数据清理会按照实际产品能力和后端流程推进，不在官网里用空白承诺替代实现。</p>
+            <p>账户注销与数据清理将按照实际产品能力和后端流程推进，以正式提供的入口与说明为准。</p>
             <span class="action-link">以实际流程为准</span>
           </article>
         </div>
@@ -143,8 +143,8 @@ const toggleSection = (index) => {
 
       <GlassSection
         eyebrow="Technical Safeguard"
-        title="当前代码能说明的技术侧边界"
-        lead="我们只描述仓库里已经明确出现的本地存储、数据分层、JWT 会话与 AI 代理方式，不去夸大看不见的部分。"
+        title="当前产品提供的技术与数据保护措施"
+        lead="我们围绕本地存储、数据分层、JWT 会话与 AI 代理等机制说明信息处理方式。"
       >
         <div class="safeguard-timeline">
           <div class="safeguard-step">
@@ -167,7 +167,7 @@ const toggleSection = (index) => {
             <span class="safeguard-phase">在我们的服务器上</span>
             <div class="safeguard-detail">
               <h4>数据分层</h4>
-              <p>当前代码里，用户业务数据与药品结构化数据分别由 MongoDB 与 MySQL 承担，JWT 会话负责维持登录态边界。</p>
+              <p>用户业务数据与药品结构化数据分别由 MongoDB 与 MySQL 承担，JWT 会话负责维持登录态边界。</p>
             </div>
           </div>
 
@@ -175,7 +175,7 @@ const toggleSection = (index) => {
             <span class="safeguard-phase">对第三方 API</span>
             <div class="safeguard-detail">
               <h4>AI 按需参与</h4>
-              <p>AI 相关能力通过后端代理，并只在你主动使用 AI 解读或安全辅助时才产生意义，官网不再把它写成默认常驻能力。</p>
+              <p>AI 相关能力通过后端代理，并只在你主动使用 AI 解读或安全辅助时按需参与。</p>
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ const toggleSection = (index) => {
       <GlassSection
         eyebrow="If You Have Questions"
         title="如果你想继续核对这些描述"
-        lead="当前更可信的沟通方式，是去看代码、看 issue，或在应用能力里直接确认，而不是依赖一个未经验证的联系入口。"
+        lead="你可以通过应用内反馈或版本更新信息，继续了解产品能力与数据处理边界。"
       >
         <div class="contact-section">
           <p>
@@ -192,8 +192,8 @@ const toggleSection = (index) => {
           </p>
           <ul class="contact-methods">
             <li><strong>应用内反馈：</strong>打开应用 → 设置 → 反馈与建议</li>
-            <li><strong>项目仓库：</strong>通过 Issue 或提交记录查看当前实现与后续变更</li>
-            <li><strong>官网同步：</strong>本页会随着数据流或功能边界变动持续修订</li>
+            <li><strong>版本更新：</strong>通过下载页与版本说明了解新功能、调整项与可用状态</li>
+            <li><strong>隐私说明：</strong>当数据流或功能边界发生变化时，本页会同步更新</li>
           </ul>
           <p style="margin-top: 1rem; color: rgba(71, 85, 105, 0.75);">
             <em>最后更新：2026 年 4 月 15 日</em>
@@ -222,8 +222,10 @@ const toggleSection = (index) => {
 
 .principle-card {
   padding: 1.25rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent) 18%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, white 88%, var(--color-accent-secondary) 12%));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 28%, white);
   border-radius: 0.5rem;
   position: relative;
 }
@@ -267,10 +269,12 @@ const toggleSection = (index) => {
 
 .accordion-item {
   margin-bottom: 0.75rem;
-  border: 1px solid rgba(100, 116, 139, 0.06);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 28%, white);
   border-radius: 0.5rem;
   overflow: hidden;
-  background: #ffffff;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent-secondary) 14%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, white 90%, var(--color-accent-secondary) 10%));
   transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
@@ -324,7 +328,7 @@ const toggleSection = (index) => {
 
 .content-inner {
   padding: 0 1.5rem 1rem;
-  border-top: 1px solid rgba(100, 116, 139, 0.06);
+  border-top: 1px solid color-mix(in srgb, var(--color-accent) 22%, white);
 }
 
 .privacy-item {
@@ -358,15 +362,19 @@ const toggleSection = (index) => {
 
 .right-card {
   padding: 1.25rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent-secondary) 16%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, white 88%, var(--color-accent-tertiary) 12%));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 26%, white);
   border-radius: 0.5rem;
   transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .right-card:hover {
-  background: rgba(255, 217, 227, 0.06);
-  border-color: rgba(255, 217, 227, 0.12);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent) 20%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), color-mix(in srgb, white 84%, var(--color-accent) 16%));
+  border-color: color-mix(in srgb, var(--color-accent) 36%, white);
 }
 
 .right-icon {
@@ -414,8 +422,10 @@ const toggleSection = (index) => {
   grid-template-columns: 120px 1fr;
   gap: 1.5rem;
   padding: 1.25rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent-tertiary) 16%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, white 88%, var(--color-accent-secondary) 12%));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 24%, white);
   border-radius: 0.5rem;
 }
 
@@ -443,8 +453,10 @@ const toggleSection = (index) => {
 
 .contact-section {
   padding: 1.5rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent) 16%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), color-mix(in srgb, white 88%, var(--color-accent-tertiary) 12%));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 24%, white);
   border-radius: 0.5rem;
 }
 

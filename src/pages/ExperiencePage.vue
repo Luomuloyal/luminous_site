@@ -18,7 +18,7 @@ const themeStories = [
   },
   {
     title: '五套预设主题',
-    body: '柔岚、月雾、神树、虚霭、浅砂都来自主项目设置页，这次官网也借用了同样的温和气质。',
+    body: '柔岚、月雾、神树、虚霭、浅砂五套预设提供更丰富的浅色层次与个性表达。',
   },
   {
     title: '更少噪音，更耐看',
@@ -37,7 +37,7 @@ const flowLabels = ['扫描 / 搜索', '阅读', '沉淀', '提醒', '复查']
           <span class="page-hero__eyebrow">Experience Journey</span>
           <h1>体验路径</h1>
           <p>
-            这页讲的不是“看起来多未来”，而是产品如何把一次偶发操作，做成更适合长期使用的节奏。
+            从识别、阅读到提醒与复查，产品把一次用药查询延伸为更适合长期使用的日常节奏。
           </p>
         </div>
       </div>
@@ -88,8 +88,8 @@ const flowLabels = ['扫描 / 搜索', '阅读', '沉淀', '提醒', '复查']
 
       <GlassSection
         eyebrow="Theme Direction"
-        title="官网视觉也跟着应用一起收口"
-        lead="我们保留层次感、材质感和少量留白，让页面更像一份耐看的产品档案，而不是短暂刺眼的展示稿。"
+        title="页面配色围绕阅读效率与识别层次展开"
+        lead="通过柔和配色、清晰层次与适度留白，让信息重点更容易被快速捕捉。"
       >
         <div class="theme-story-grid">
           <article v-for="item in themeStories" :key="item.title" class="theme-story-card">
@@ -101,8 +101,8 @@ const flowLabels = ['扫描 / 搜索', '阅读', '沉淀', '提醒', '复查']
 
       <GlassSection
         eyebrow="Experience Principle"
-        title="这次重构的三个体验原则"
-        lead="页面风格、文案语气和功能介绍都围绕同一个目标服务：让官网和产品本身一样，尽量清楚、温和、可信。"
+        title="三个体验原则"
+        lead="页面风格、功能介绍和交互节奏围绕同一个目标：让信息清楚出现，让下一步自然衔接。"
       >
         <div class="principle-grid">
           <article class="principle-card-local">
@@ -118,7 +118,7 @@ const flowLabels = ['扫描 / 搜索', '阅读', '沉淀', '提醒', '复查']
           <article class="principle-card-local">
             <span>03</span>
             <h4>视觉不抢答案</h4>
-            <p>官网这次收敛到浅色莫兰迪基调，让阅读与理解成为第一优先级，而不是高刺激视觉秀场。</p>
+            <p>浅色莫兰迪基调降低视觉噪音，让阅读与理解始终保持优先。</p>
           </article>
         </div>
       </GlassSection>
@@ -141,8 +141,10 @@ const flowLabels = ['扫描 / 搜索', '阅读', '沉淀', '提醒', '复查']
 .scene-copy,
 .theme-story-card,
 .principle-card-local {
-  border: 1px solid rgba(132, 120, 113, 0.12);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(247, 241, 236, 0.84));
+  border: 1px solid var(--route-border);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--route-accent) 18%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), color-mix(in srgb, white 86%, var(--route-accent-tertiary) 14%));
   box-shadow: 0 22px 48px rgba(126, 111, 103, 0.08);
 }
 
@@ -200,8 +202,12 @@ const flowLabels = ['扫描 / 搜索', '阅读', '沉淀', '提醒', '复查']
   min-height: 6rem;
   padding: 1rem;
   border-radius: 1.4rem;
-  border: 1px solid rgba(132, 120, 113, 0.12);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(244, 238, 233, 0.9));
+  border: 1px solid var(--route-border);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, white 90%, var(--route-accent) 10%),
+    color-mix(in srgb, white 82%, var(--route-accent-secondary) 18%)
+  );
   color: rgba(93, 80, 74, 0.86);
   text-align: center;
   font-weight: 600;
@@ -265,9 +271,23 @@ const flowLabels = ['扫描 / 搜索', '阅读', '沉淀', '提醒', '复查']
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: rgba(184, 198, 177, 0.18);
+  background: color-mix(in srgb, var(--route-accent) 22%, white);
   color: rgba(98, 85, 79, 0.88);
   font-weight: 700;
+}
+
+.theme-story-card:nth-child(2),
+.principle-card-local:nth-child(2) {
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--route-accent-secondary) 18%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), color-mix(in srgb, white 86%, var(--route-accent-secondary) 14%));
+}
+
+.theme-story-card:nth-child(3),
+.principle-card-local:nth-child(3) {
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--route-accent-tertiary) 18%, white), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), color-mix(in srgb, white 86%, var(--route-accent-tertiary) 14%));
 }
 
 @media (max-width: 1180px) {
