@@ -92,7 +92,7 @@ watch(
 
         <div class="site-footer__copy">
           <p>
-            识别、提醒、资料沉淀与安全辅助被重新编织成一条更流动的体验链路。
+            官网里的功能、下载状态与文案描述，都会尽量和主项目源码保持一致。
           </p>
           <small>
             AI 解读与安全辅助仅作信息参考，不替代专业医生或药师建议。
@@ -113,6 +113,14 @@ watch(
       <div class="site-footer__beian">
         <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
           津ICP备2026003615号
+        </a>
+        <span aria-hidden="true"> | </span>
+        <a
+          href="https://beian.mps.gov.cn/#/query/webSearch?code=12011602300919"
+          target="_blank"
+          rel="noreferrer"
+        >
+          津公网安备12011602300919号
         </a>
       </div>
     </footer>

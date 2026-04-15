@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
+
 import CTAConsole from '../components/CTAConsole.vue'
 import GlassSection from '../components/GlassSection.vue'
 import { siteContent } from '../content/siteContent'
@@ -9,16 +10,37 @@ const pageRef = ref(null)
 
 usePageMotion(pageRef)
 
-const featureCategories = computed(() => {
-  const groups = siteContent.featureGroups || []
-  return groups.map((group, idx) => ({
-    id: idx,
-    icon: ['📷', '🔔', '🛡️'][idx] || '⭐',
-    category: group.title,
-    description: group.description || '核心功能模块',
-    features: group.cards || []
-  }))
-})
+const featureGroups = computed(() => siteContent.featureGroups)
+
+const proofPoints = [
+  {
+    title: '主导航可见',
+    body: '首页、搜索、扫描、提醒、打卡、安全辅助、设置等页面都在主项目里有对应入口和路由。',
+  },
+  {
+    title: '控制器已拆分',
+    body: '扫描、提醒、打卡、安全辅助、相册、首页等流程都有各自的控制器或 viewmodel，不是单文件试玩项目。',
+  },
+  {
+    title: '前后端分工明确',
+    body: '客户端页面、服务端 API、数据库与本地存储之间已经开始按职责分层，不需要靠官网脑补。',
+  },
+]
+
+const boundaryCards = [
+  {
+    title: 'AI 是解释层，不是替代判断',
+    body: 'AI 解读负责把信息翻译得更好懂，安全辅助负责把风险提醒得更靠前，但两者都不应该伪装成诊断。',
+  },
+  {
+    title: '提醒强调持续执行',
+    body: '提醒页、今日视图和打卡页说明产品重心并不只是“查到药”，而是“之后如何长期坚持”。',
+  },
+  {
+    title: '历史沉淀服务复查效率',
+    body: '识别相册与历史记录的意义不是囤积数据，而是让用户在之后更快找到自己已经看过的药。',
+  },
+]
 </script>
 
 <template>
@@ -26,109 +48,82 @@ const featureCategories = computed(() => {
     <section class="page-hero">
       <div class="page__container">
         <div class="page-hero__content" data-hero-item>
-          <span class="page-hero__eyebrow">Core Features</span>
+          <span class="page-hero__eyebrow">Feature Atlas</span>
           <h1>功能全景</h1>
           <p>
-            从扫描识别、智能管理到安全辅助，每项功能都是为了让用药变得更简单、更安全、更贴心。
+            这页不再用夸张数字来撑气氛，而是把当前代码里已经落地的功能模块按顺序讲清楚。
           </p>
         </div>
       </div>
     </section>
 
     <div class="page__container">
-      <section class="features-intro">
-        <div class="intro-text">
-          <span class="intro-eyebrow">Three Pillars</span>
-          <h2>三层递进的功能体系</h2>
-          <p>每个功能都围绕用药生活的真实场景设计。识别如何变得秒取决，提醒如何变得不烦人，安全辅助如何让你有底气。</p>
-          <div class="intro-highlights">
-            <div class="highlight-item">
-              <span>50+</span>
-              <p>药品信息库</p>
-            </div>
-            <div class="highlight-item">
-              <span>7</span>
-              <p>风险检测维度</p>
-            </div>
-            <div class="highlight-item">
-              <span>99%</span>
-              <p>识别准确率</p>
-            </div>
-          </div>
+      <section class="feature-proof">
+        <div class="feature-proof__copy">
+          <span class="feature-proof__kicker">Source-Aligned</span>
+          <h2>每一层功能都能在主项目里找到对应实现</h2>
+          <p>
+            我们把功能拆成查药与识药、提醒与记录、AI 与历史沉淀三组，不是为了排版工整，
+            而是因为这就是当前仓库里最清晰的能力分层。
+          </p>
         </div>
 
-        <div class="intro-visual">
-          <div class="feature-showcase">
-            <div class="showcase-card">
-              <span class="showcase-icon">📷</span>
-              <h4>智能识别</h4>
-            </div>
-            <div class="showcase-card">
-              <span class="showcase-icon">🔔</span>
-              <h4>贴心提醒</h4>
-            </div>
-            <div class="showcase-card">
-              <span class="showcase-icon">🛡️</span>
-              <h4>安全卫士</h4>
-            </div>
-          </div>
+        <div class="feature-proof__grid">
+          <article v-for="item in proofPoints" :key="item.title" class="proof-card">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </article>
         </div>
       </section>
 
       <GlassSection
-        eyebrow="Detailed Breakdown"
-        title="功能清单"
-        lead="每个功能的真实能力说清楚，不伪装，不夸大。"
+        eyebrow="Feature Breakdown"
+        title="按真实产品结构拆开的能力地图"
+        lead="每一个功能模块都由页面、控制器、数据流和边界描述共同组成，而不是单张概念图。"
       >
-        <div class="features-detailed">
-          <div
-            v-for="category in featureCategories"
-            :key="category.id"
-            class="category-block"
-          >
-            <div class="category-header">
-              <span class="category-icon">{{ category.icon }}</span>
-              <div class="category-title-block">
-                <h3>{{ category.category }}</h3>
-                <p>{{ category.description }}</p>
-              </div>
-            </div>
-            
-            <ul class="feature-list">
-              <li
-                v-for="feature in category.features"
-                :key="feature.title"
-                class="feature-item"
+        <div class="feature-stack">
+          <article v-for="group in featureGroups" :key="group.title" class="feature-group">
+            <header class="feature-group__header">
+              <span>{{ group.orbit }}</span>
+              <h3>{{ group.title }}</h3>
+              <p>{{ group.description }}</p>
+            </header>
+
+            <div class="feature-group__cards">
+              <article
+                v-for="card in group.cards"
+                :key="card.title"
+                class="feature-detail-card"
+                :class="{ 'feature-detail-card--wide': card.span === 'wide' }"
               >
-                <span class="feature-title">{{ feature.title }}</span>
-                <span class="feature-body">{{ feature.body }}</span>
-              </li>
-            </ul>
-          </div>
+                <small>{{ card.label }}</small>
+                <h4>{{ card.title }}</h4>
+                <p class="feature-detail-card__body">{{ card.body }}</p>
+                <p class="feature-detail-card__detail">{{ card.detail }}</p>
+
+                <div class="feature-detail-card__tags">
+                  <span v-for="bullet in card.bullets" :key="bullet">{{ bullet }}</span>
+                </div>
+
+                <ul class="feature-detail-card__facts">
+                  <li v-for="fact in card.facts" :key="fact">{{ fact }}</li>
+                </ul>
+              </article>
+            </div>
+          </article>
         </div>
       </GlassSection>
 
       <GlassSection
-        eyebrow="Trust & Boundaries"
-        title="开放中的克制"
-        lead="产品能力可以张扬，但产品边界必须清晰。AI 帮你理解，而不是替你决策。"
+        eyebrow="Boundaries"
+        title="能力可以完整，但表达必须克制"
+        lead="这次官网重构把边界说得更具体，因为可信度并不来自更大的词，而是来自更清楚的解释。"
       >
-        <div class="trust-grid">
-          <div class="trust-item">
-            <div class="trust-icon">🤝</div>
-            <h4>智能辅助</h4>
-            <p>AI 解读帮助你快速理解医学信息，但医疗决策永远是你的权利。所有推荐都标注来源和限制。</p>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon">⚠️</div>
-            <h4>风险提示</h4>
-            <p>检测药物相互作用、禁忌、注意事项，但不会武断给出"不能吃"的结论。风险认知权力属于你。</p>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon">📚</div>
-            <h4>数据沉淀</h4>
-            <p>历史记录帮助回忆和核对，不制造心理负担。永远保持轻量、易用、易理解。</p>
-          </div>
+        <div class="boundary-grid">
+          <article v-for="item in boundaryCards" :key="item.title" class="boundary-card-local">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.body }}</p>
+          </article>
         </div>
       </GlassSection>
 
@@ -138,254 +133,187 @@ const featureCategories = computed(() => {
 </template>
 
 <style scoped>
-.features-intro {
+.feature-proof {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  margin: 3rem 0;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 1.2rem;
 }
 
-.intro-text {
-  padding: 0;
+.feature-proof__copy,
+.proof-card,
+.feature-group,
+.feature-detail-card,
+.boundary-card-local {
+  border: 1px solid rgba(132, 120, 113, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(247, 241, 236, 0.84));
+  box-shadow: 0 22px 48px rgba(126, 111, 103, 0.08);
 }
 
-.intro-eyebrow {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: rgba(100, 110, 120, 0.6);
+.feature-proof__copy {
+  padding: 2rem;
+  border-radius: 1.9rem;
+}
+
+.feature-proof__kicker,
+.feature-group__header span,
+.feature-detail-card small {
+  display: inline-flex;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 1rem;
+  color: rgba(112, 98, 92, 0.7);
 }
 
-.intro-text h2 {
-  margin: 0 0 1rem 0;
-  font-size: 2rem;
-  font-weight: 800;
-  color: rgba(15, 23, 42, 0.95);
-  line-height: 1.2;
+.feature-proof__copy h2 {
+  margin: 1rem 0 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: rgba(72, 59, 53, 0.96);
 }
 
-.intro-text > p {
-  margin: 0 0 2rem 0;
-  font-size: 1rem;
-  color: rgba(71, 85, 105, 0.75);
-  line-height: 1.7;
+.feature-proof__copy p,
+.feature-group__header p,
+.feature-detail-card p,
+.boundary-card-local p {
+  color: rgba(98, 85, 79, 0.78);
+  line-height: 1.75;
 }
 
-.intro-highlights {
+.feature-proof__grid,
+.boundary-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
-.highlight-item {
-  padding: 1rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
-  text-align: center;
+.feature-proof__grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.highlight-item span {
-  display: block;
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: rgba(15, 23, 42, 0.95);
-  margin-bottom: 0.25rem;
+.proof-card,
+.boundary-card-local {
+  padding: 1.4rem;
+  border-radius: 1.5rem;
 }
 
-.highlight-item p {
-  margin: 0;
-  color: rgba(71, 85, 105, 0.7);
-  font-size: 0.85rem;
+.proof-card h3,
+.feature-group__header h3,
+.feature-detail-card h4,
+.boundary-card-local h4 {
+  margin: 0.7rem 0 0;
+  color: rgba(72, 59, 53, 0.95);
 }
 
-.intro-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.proof-card p {
+  margin: 0.75rem 0 0;
 }
 
-.feature-showcase {
+.feature-stack {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-  width: 100%;
+  gap: 1.25rem;
+  margin-top: 2rem;
 }
 
-.showcase-card {
-  padding: 2rem 1rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
-  text-align: center;
+.feature-group {
+  padding: 1.5rem;
+  border-radius: 1.7rem;
 }
 
-.showcase-icon {
-  font-size: 3rem;
-  display: block;
-  margin-bottom: 0.75rem;
+.feature-group__header h3 {
+  font-size: 1.5rem;
 }
 
-.showcase-card h4 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
-}
-
-.features-detailed {
+.feature-group__cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.category-block {
-  padding: 2rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
-}
-
-.category-header {
-  display: flex;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  margin-bottom: 1.5rem;
-  align-items: flex-start;
+  margin-top: 1.2rem;
 }
 
-.category-icon {
-  font-size: 2.5rem;
-  flex-shrink: 0;
+.feature-detail-card {
+  padding: 1.25rem;
+  border-radius: 1.35rem;
 }
 
-.category-title-block h3 {
-  margin: 0 0 0.25rem 0;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
+.feature-detail-card--wide {
+  grid-column: span 2;
 }
 
-.category-title-block p {
-  margin: 0;
-  color: rgba(71, 85, 105, 0.7);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.feature-item {
-  padding: 0.75rem;
-  background: rgba(255, 255, 255, 1);
-  border-left: 2px solid rgba(200, 240, 216, 0.4);
-  border-radius: 0.25rem;
-}
-
-.feature-title {
-  display: block;
+.feature-detail-card__body {
+  margin: 0.8rem 0 0;
   font-weight: 600;
-  color: rgba(41, 50, 65, 0.95);
-  font-size: 0.95rem;
-  margin-bottom: 0.3rem;
+  color: rgba(82, 68, 63, 0.92);
 }
 
-.feature-body {
-  display: block;
-  color: rgba(71, 85, 105, 0.7);
-  font-size: 0.85rem;
-  line-height: 1.4;
+.feature-detail-card__detail {
+  margin: 0.7rem 0 0;
+  font-size: 0.92rem;
 }
 
-.trust-grid {
+.feature-detail-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.feature-detail-card__tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(132, 120, 113, 0.1);
+  color: rgba(93, 80, 74, 0.82);
+  font-size: 0.82rem;
+}
+
+.feature-detail-card__facts {
+  padding: 0;
+  margin: 1rem 0 0;
+  list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
+  gap: 0.45rem;
 }
 
-.trust-item {
-  padding: 2rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
-  text-align: center;
-}
-
-.trust-icon {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.trust-item h4 {
-  margin: 0 0 0.75rem 0;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
-}
-
-.trust-item p {
-  margin: 0;
-  color: rgba(71, 85, 105, 0.7);
-  line-height: 1.6;
+.feature-detail-card__facts li {
+  color: rgba(98, 85, 79, 0.74);
   font-size: 0.9rem;
 }
 
-@media (max-width: 1024px) {
-  .features-intro {
+.feature-detail-card__facts li::before {
+  content: '·';
+  margin-right: 0.45rem;
+  color: rgba(112, 98, 92, 0.72);
+}
+
+.boundary-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+@media (max-width: 1180px) {
+  .feature-proof,
+  .feature-proof__grid,
+  .feature-group__cards,
+  .boundary-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
   }
 
-  .intro-highlights {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .features-detailed {
-    grid-template-columns: 1fr 1fr;
+  .feature-detail-card--wide {
+    grid-column: auto;
   }
 }
 
-@media (max-width: 768px) {
-  .features-intro {
-    margin: 2rem 0;
-  }
-
-  .intro-text h2 {
-    font-size: 1.5rem;
-  }
-
-  .intro-highlights {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-  }
-
-  .highlight-item {
-    padding: 0.75rem;
-  }
-
-  .highlight-item span {
-    font-size: 1.4rem;
-  }
-
-  .features-detailed {
-    grid-template-columns: 1fr;
-  }
-
-  .trust-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 767px) {
+  .feature-proof__copy,
+  .proof-card,
+  .feature-group,
+  .feature-detail-card,
+  .boundary-card-local {
+    padding: 1.2rem;
+    border-radius: 1.3rem;
   }
 }
 </style>

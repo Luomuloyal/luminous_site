@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <RouterLink to="/download" class="site-nav__cta">
-          <span>进入下载页</span>
+          <span>查看内测状态</span>
           <small>Android Beta</small>
         </RouterLink>
 
@@ -165,8 +165,8 @@ onBeforeUnmount(() => {
           </RouterLink>
 
           <RouterLink to="/download" class="site-nav__mobile-cta">
-            <span>进入下载页</span>
-            <small>Android Beta Ready</small>
+            <span>查看内测状态</span>
+            <small>Android Beta</small>
           </RouterLink>
         </div>
       </div>

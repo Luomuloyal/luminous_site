@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import CTAConsole from '../components/CTAConsole.vue'
 import GlassSection from '../components/GlassSection.vue'
 import HeroScene from '../components/HeroScene.vue'
+import RuntimeShotCard from '../components/RuntimeShotCard.vue'
 import { siteContent } from '../content/siteContent'
 import { usePageMotion } from '../composables/usePageMotion'
 
@@ -12,37 +13,68 @@ const pageRef = ref(null)
 
 usePageMotion(pageRef)
 
-const coreFeatures = [
+const sourceFacts = [
   {
-    icon: '📷',
-    title: '智能识别',
-    description: '拍照扫描药品信息，秒识别成分、用法、禁忌。',
-    href: '/features'
+    label: '真实页面',
+    value: '首页 / 搜索 / 扫描 / 提醒 / 打卡 / 安全辅助',
+    body: '这些页面和控制器都已经在 Flutter 主项目里存在，官网不再用抽象概念替代真实路由。',
   },
   {
-    icon: '🔔',
-    title: '定时提醒',
-    description: '个性化用药日程，不会漏掉任何一次用药提醒。',
-    href: '/features'
+    label: '显示模式',
+    value: '跟随系统 / 浅色 / 深色',
+    body: '这次官网也同步切到更柔和的浅色莫兰迪基调，和应用里强调的可切换体验保持一致。',
   },
   {
-    icon: '🛡️',
-    title: '安全卫士',
-    description: '实时监测用药风险，药物相互作用一览无遗。',
-    href: '/features'
-  }
+    label: '主题预设',
+    value: '柔岚 / 月雾 / 神树 / 虚霭 / 浅砂',
+    body: '五套预设主题来自应用设置能力本身，而不是官网临时编出来的展示词。',
+  },
 ]
 
-const themeOptions = [
+const rhythmSteps = [
   {
-    label: 'Light / Dark',
-    description: '自由切换深浅模式，护眼舒适看一整天。'
+    step: '01',
+    title: '先找到药',
+    body: '拍照识别和手动搜索共用同一条理解主线，不把用户留在入口页里。',
   },
   {
-    label: '7 Style Themes',
-    description: '柔岚月雾神树虚霭，打造贴心的视觉节奏。'
-  }
+    step: '02',
+    title: '再读懂重点',
+    body: '药品详情、AI 解读和安全辅助负责把原本难读的信息翻译成更容易判断的内容。',
+  },
+  {
+    step: '03',
+    title: '最后接上日常',
+    body: '提醒、今日视图、打卡和相册沉淀让一次查看能够继续变成长期可用的记录。',
+  },
 ]
+
+const themeModes = [
+  { title: '跟随系统', desc: '适合把应用放进日常设备环境里，不强迫你学习另一套视觉节奏。', tone: 'auto' },
+  { title: '浅色模式', desc: '更适合白天高频查看信息，这次官网重构也以它作为主调。', tone: 'light' },
+  { title: '深色模式', desc: '在夜间或暗光环境下减少刺激感，和提醒、打卡等高频页面更好配合。', tone: 'dark' },
+]
+
+const themePresets = [
+  { name: '柔岚', desc: '淡蓝、浅紫和暖金并置，明快但不刺眼。' },
+  { name: '月雾', desc: '冷蓝为主，像月光下的薄雾，气质更静。' },
+  { name: '神树', desc: '黄绿与柔金交织，更适合强调生机和秩序感。' },
+  { name: '虚霭', desc: '偏紫主调里带一点蓝光，保留轻微的层次感。' },
+  { name: '浅砂', desc: '奶茶、枯粉和陶土色更克制，接近日常器物感。' },
+]
+
+const featuredShots = computed(() =>
+  siteContent.featuredShotIds.map((id) => siteContent.screenshotSlots.find((item) => item.id === id)).filter(Boolean),
+)
+
+const anchoredFeatures = computed(() =>
+  siteContent.featureGroups.map((group) => ({
+    orbit: group.orbit,
+    title: group.title,
+    lead: group.lead,
+    cards: group.cards.slice(0, 2),
+  })),
+)
 </script>
 
 <template>
@@ -53,88 +85,123 @@ const themeOptions = [
       :highlights="siteContent.homeHighlights"
     />
 
-    <section class="core-features-section">
-      <div class="core-features-grid">
-        <div class="feature-card">
-          <div class="feature-number">01</div>
-          <h3>识别不是孤立功能</h3>
-          <p>识别、理解、保存与提醒被设计成连续旋转，而不是四个分散按钮。</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-number">02</div>
-          <h3>UI像未来感工具能</h3>
-          <p>深浅色双模式与七套主题并存，视觉有辨识度但不刺眼日常可读性。</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-number">03</div>
-          <h3>AI只做辅助，不越界</h3>
-          <p>信息解释与风险提示被明确定位为辅助参考，不替代专业医疗建议。</p>
-        </div>
-      </div>
-    </section>
-
     <div class="page__container">
-      <section class="intro-section">
-        <div class="intro-content">
-          <span class="intro-eyebrow">Three Pillars</span>
-          <h2>三重功能，层层护航</h2>
-          <p class="intro-lead">从识别、管理到安全辅助，让每个用药环节都有所依靠。不是功能的堆砌，而是用心的设计。</p>
-          <div class="intro-cta">
-            <a href="#features" class="learn-more">了解更多功能 →</a>
+      <section class="home-editorial">
+        <div class="home-editorial__copy">
+          <span class="home-kicker">Refined Official Site</span>
+          <h2>官网从“会发光的宣传页”回到“能解释产品的门面”</h2>
+          <p>
+            这次重构不再堆高概念词汇，而是按真实源码去讲产品：查药、识药、提醒、打卡、
+            AI 解读和安全辅助分别做什么，怎样接成一条能长期使用的路径。
+          </p>
+          <div class="home-editorial__actions">
+            <RouterLink to="/features" class="home-link home-link--primary">
+              查看功能全景
+            </RouterLink>
+            <RouterLink to="/about" class="home-link home-link--secondary">
+              对照项目结构
+            </RouterLink>
           </div>
         </div>
-        <div class="intro-visual">
-          <div class="feature-preview">
-            <span class="feature-icon">📷</span>
-            <h4>智能识别</h4>
-            <p>拍照即可识别药品</p>
-          </div>
-          <div class="feature-preview">
-            <span class="feature-icon">🔔</span>
-            <h4>定时提醒</h4>
-            <p>用药时间不会漏</p>
-          </div>
-          <div class="feature-preview">
-            <span class="feature-icon">🛡️</span>
-            <h4>安全卫士</h4>
-            <p>风险提示保护你</p>
-          </div>
+
+        <div class="home-editorial__facts">
+          <article v-for="fact in sourceFacts" :key="fact.label" class="fact-card">
+            <span>{{ fact.label }}</span>
+            <strong>{{ fact.value }}</strong>
+            <p>{{ fact.body }}</p>
+          </article>
         </div>
       </section>
 
       <GlassSection
-        eyebrow="Experience Design"
-        title="不只看得舒服，更要用得贴心"
-        lead="深浅主题自由切换，7种风格任你选择，打造属于你的用药生活。"
+        id="features"
+        eyebrow="Source-Aligned Features"
+        title="从当前源码里，能看到一条很完整的三段式能力链"
+        lead="它不是炫技式的功能墙，而是按真实页面、控制器、接口和本地能力整理出来的产品地图。"
       >
-        <div class="experience-layout">
-          <div class="experience-info">
-            <div class="experience-item">
-              <h4>🌓 深浅主题</h4>
-              <p>护眼深色夜用，清爽浅色日用，一键无缝切换。无论何时何地，都有舒适的视觉陪伴。</p>
+        <div class="anchor-grid">
+          <article v-for="group in anchoredFeatures" :key="group.title" class="anchor-card">
+            <div class="anchor-card__head">
+              <span>{{ group.orbit }}</span>
+              <h3>{{ group.title }}</h3>
+              <p>{{ group.lead }}</p>
             </div>
-            <div class="experience-item">
-              <h4>🎨 7 种风格</h4>
-              <p>柔岚月雾神树虚霭，霜尘浅砂烟波。每种风格都有独特气质，选择最适合你的那一款。</p>
-            </div>
-            <div class="experience-item">
-              <h4>✨ 个性定制</h4>
-              <p>从色彩到排版，从动画到提醒，所有设置都由你主导。真正的个性化体验。</p>
-            </div>
-          </div>
-          <div class="experience-showcase">
-            <!-- 这里可以放你的产品示意图 -->
-            <div class="theme-comparison">
-              <div class="theme-demo light-theme">
-                <span>浅色模式</span>
-              </div>
-              <div class="theme-demo dark-theme">
-                <span>深色模式</span>
+
+            <div class="anchor-card__items">
+              <div v-for="card in group.cards" :key="card.title" class="anchor-item">
+                <strong>{{ card.title }}</strong>
+                <p>{{ card.body }}</p>
               </div>
             </div>
-          </div>
+          </article>
         </div>
       </GlassSection>
+
+      <section class="home-rhythm">
+        <div class="home-rhythm__intro">
+          <span class="home-kicker">Daily Rhythm</span>
+          <h2>真正有用的不是“识别了一次”，而是之后还能继续发生什么</h2>
+          <p>
+            识别、阅读、提醒和历史沉淀本来就应该是一条连续路径。只把其中任何一步做得很亮眼，
+            都不足以支撑长期使用。
+          </p>
+        </div>
+
+        <div class="home-rhythm__grid">
+          <article v-for="item in rhythmSteps" :key="item.step" class="rhythm-card">
+            <span>{{ item.step }}</span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </article>
+        </div>
+      </section>
+
+      <GlassSection
+        eyebrow="Runtime Gallery"
+        title="官网里的截图，不只是装饰，也是在给功能叙事落锚点"
+        lead="当运行时媒体在线时，这里会优先展示真实截图；离线时则回退到同样遵循产品结构的 mockup。"
+      >
+        <div class="home-shot-grid">
+          <RuntimeShotCard
+            v-for="shot in featuredShots"
+            :key="shot.id"
+            :shot-id="shot.id"
+            :title="shot.title"
+            :caption="shot.caption"
+            :fallback-scene="shot.fallbackScene"
+          />
+        </div>
+      </GlassSection>
+
+      <section class="theme-studio">
+        <div class="theme-studio__copy">
+          <span class="home-kicker">Theme System</span>
+          <h2>视觉风格这次也收口到更柔和的浅色莫兰迪体系</h2>
+          <p>
+            主应用里已经有显示模式与主题预设，这次官网不再抢戏，而是借用同样的气质去做更安静、
+            更耐看的官方门面。
+          </p>
+        </div>
+
+        <div class="theme-studio__modes">
+          <article
+            v-for="mode in themeModes"
+            :key="mode.title"
+            class="mode-card"
+            :class="`mode-card--${mode.tone}`"
+          >
+            <h3>{{ mode.title }}</h3>
+            <p>{{ mode.desc }}</p>
+          </article>
+        </div>
+
+        <div class="theme-studio__presets">
+          <article v-for="preset in themePresets" :key="preset.name" class="preset-chip">
+            <strong>{{ preset.name }}</strong>
+            <p>{{ preset.desc }}</p>
+          </article>
+        </div>
+      </section>
 
       <CTAConsole :content="siteContent.homeMeta" />
     </div>
@@ -142,289 +209,323 @@ const themeOptions = [
 </template>
 
 <style scoped>
-.core-features-section {
-  padding: 3rem 1.5rem;
-  margin: 2rem 0;
-  background: linear-gradient(135deg, rgba(255, 217, 227, 0.08) 0%, rgba(232, 186, 213, 0.06) 100%);
-  border: 1px solid rgba(255, 217, 227, 0.15);
-}
-
-.core-features-grid {
-  max-width: 1200px;
-  margin: 0 auto;
+.home-editorial,
+.theme-studio {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
-.feature-card {
-  padding: 1.75rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.75rem;
-  transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-  border-color: rgba(200, 240, 216, 0.2);
-  background: rgba(200, 240, 216, 0.05);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.feature-number {
-  display: inline-block;
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: rgba(100, 110, 120, 0.5);
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.05em;
-}
-
-.feature-card h3 {
-  margin: 0 0 0.75rem 0;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
-}
-
-.feature-card p {
-  margin: 0;
-  color: rgba(71, 85, 105, 0.7);
-  line-height: 1.6;
-  font-size: 0.9rem;
-}
-
-.intro-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  margin: 4rem 0;
-  padding: 0;
-}
-
-.intro-content {
-  padding: 0;
-}
-
-.intro-eyebrow {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: rgba(100, 110, 120, 0.6);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 1rem;
-}
-
-.intro-content h2 {
-  margin: 0 0 1rem 0;
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: rgba(15, 23, 42, 0.95);
-  line-height: 1.2;
-}
-
-.intro-lead {
-  margin: 0 0 1.5rem 0;
-  font-size: 1rem;
-  color: rgba(71, 85, 105, 0.75);
-  line-height: 1.7;
-}
-
-.intro-cta {
-  margin-top: 2rem;
-}
-
-.learn-more {
-  display: inline-block;
-  padding: 0.875rem 1.75rem;
-  background: rgba(200, 240, 216, 0.12);
-  border: 1px solid rgba(200, 240, 216, 0.3);
-  border-radius: 0.5rem;
-  color: rgba(41, 50, 65, 0.9);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.25s ease;
-}
-
-.learn-more:hover {
-  background: rgba(200, 240, 216, 0.2);
-  border-color: rgba(200, 240, 216, 0.5);
-}
-
-.intro-visual {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  padding: 2.5rem;
-  background: linear-gradient(135deg, rgba(255, 217, 227, 0.08) 0%, rgba(232, 186, 213, 0.06) 100%);
-  border: 1px solid rgba(255, 217, 227, 0.15);
-  border-radius: 1rem;
-}
-
-.feature-preview {
-  padding: 1.75rem 1rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
-  text-align: center;
-  transition: all 0.25s ease;
-}
-
-.feature-preview:hover {
-  border-color: rgba(200, 240, 216, 0.2);
-  background: rgba(200, 240, 216, 0.05);
-  transform: translateY(-2px);
-}
-
-.feature-preview span {
-  display: block;
-  font-size: 2.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.feature-preview h4 {
-  margin: 0.5rem 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
-}
-
-.feature-preview p {
-  margin: 0;
-  color: rgba(71, 85, 105, 0.7);
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-.experience-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  margin: 2rem 0;
-}
-
-.experience-info {
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
   gap: 1.5rem;
 }
 
-.experience-item {
-  padding: 1.5rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
+.home-editorial {
+  align-items: stretch;
 }
 
-.experience-item h4 {
-  margin: 0 0 0.75rem 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
+.home-editorial__copy,
+.theme-studio__copy {
+  padding: 2rem;
+  border: 1px solid rgba(135, 121, 112, 0.12);
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at top right, rgba(215, 199, 187, 0.16), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(248, 241, 235, 0.88));
+  box-shadow: 0 24px 56px rgba(126, 111, 103, 0.08);
 }
 
-.experience-item p {
-  margin: 0;
-  color: rgba(71, 85, 105, 0.7);
-  line-height: 1.6;
-  font-size: 0.9rem;
-}
-
-.experience-showcase {
-  display: flex;
+.home-kicker {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-height: 400px;
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(135, 121, 112, 0.12);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(98, 85, 79, 0.78);
 }
 
-.theme-comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  width: 100%;
+.home-editorial__copy h2,
+.home-rhythm__intro h2,
+.theme-studio__copy h2 {
+  margin: 1rem 0 0;
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: rgba(72, 59, 53, 0.96);
 }
 
-.theme-demo {
-  padding: 3rem 1.5rem;
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 300px;
-  font-weight: 700;
+.home-editorial__copy p,
+.home-rhythm__intro p,
+.theme-studio__copy p {
+  margin: 1rem 0 0;
+  max-width: 42rem;
+  color: rgba(98, 85, 79, 0.82);
+  line-height: 1.8;
   font-size: 1rem;
-  color: rgba(15, 23, 42, 0.9);
-  border: 2px dashed rgba(100, 116, 139, 0.2);
 }
 
-.light-theme {
-  background: linear-gradient(135deg, #FFF9F7 0%, #FFFBF9 100%);
-  color: rgba(15, 23, 42, 0.8);
+.home-editorial__actions {
+  display: flex;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
-.dark-theme {
-  background: linear-gradient(135deg, rgba(41, 50, 65, 0.95) 0%, rgba(30, 37, 50, 0.98) 100%);
-  color: rgba(240, 243, 247, 0.9);
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.2rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
-@media (max-width: 1024px) {
-  .core-features-section {
-    padding: 2.5rem 1rem;
-    margin: 1.5rem 0;
-  }
+.home-link--primary {
+  background: rgba(191, 166, 158, 0.2);
+  color: rgba(72, 59, 53, 0.96);
+  border: 1px solid rgba(191, 166, 158, 0.24);
+}
 
-  .core-features-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-  }
+.home-link--secondary {
+  background: rgba(255, 255, 255, 0.66);
+  color: rgba(98, 85, 79, 0.86);
+  border: 1px solid rgba(135, 121, 112, 0.12);
+}
 
-  .intro-section {
+.home-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(126, 111, 103, 0.1);
+}
+
+.home-editorial__facts {
+  display: grid;
+  gap: 1rem;
+}
+
+.fact-card,
+.anchor-card,
+.rhythm-card,
+.mode-card,
+.preset-chip {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.6rem;
+  border: 1px solid rgba(135, 121, 112, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(247, 241, 236, 0.82));
+  box-shadow: 0 22px 44px rgba(126, 111, 103, 0.08);
+}
+
+.fact-card {
+  padding: 1.4rem;
+}
+
+.fact-card span,
+.anchor-card__head span {
+  display: inline-flex;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(117, 103, 95, 0.68);
+}
+
+.fact-card strong {
+  display: block;
+  margin-top: 0.7rem;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  color: rgba(72, 59, 53, 0.96);
+}
+
+.fact-card p {
+  margin: 0.8rem 0 0;
+  color: rgba(98, 85, 79, 0.76);
+  line-height: 1.65;
+}
+
+.anchor-grid,
+.home-shot-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.anchor-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.anchor-card {
+  padding: 1.5rem;
+}
+
+.anchor-card__head h3 {
+  margin: 0.55rem 0 0;
+  font-size: 1.35rem;
+  color: rgba(72, 59, 53, 0.96);
+}
+
+.anchor-card__head p {
+  margin: 0.75rem 0 0;
+  color: rgba(98, 85, 79, 0.78);
+  line-height: 1.75;
+}
+
+.anchor-card__items {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+}
+
+.anchor-item {
+  padding: 1rem 1.05rem;
+  border-radius: 1.1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(135, 121, 112, 0.08);
+}
+
+.anchor-item strong {
+  color: rgba(72, 59, 53, 0.95);
+}
+
+.anchor-item p {
+  margin: 0.45rem 0 0;
+  color: rgba(98, 85, 79, 0.74);
+  line-height: 1.6;
+  font-size: 0.92rem;
+}
+
+.home-rhythm {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.home-rhythm__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.rhythm-card {
+  padding: 1.5rem;
+  min-height: 14rem;
+}
+
+.rhythm-card span {
+  display: inline-flex;
+  width: 2.7rem;
+  height: 2.7rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(191, 166, 158, 0.16);
+  color: rgba(98, 85, 79, 0.82);
+  font-weight: 700;
+}
+
+.rhythm-card h3,
+.mode-card h3 {
+  margin: 1rem 0 0;
+  font-size: 1.2rem;
+  color: rgba(72, 59, 53, 0.96);
+}
+
+.rhythm-card p,
+.mode-card p,
+.preset-chip p {
+  margin: 0.75rem 0 0;
+  color: rgba(98, 85, 79, 0.76);
+  line-height: 1.7;
+}
+
+.home-shot-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.theme-studio {
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  align-items: start;
+}
+
+.theme-studio__modes,
+.theme-studio__presets {
+  display: grid;
+  gap: 1rem;
+}
+
+.theme-studio__modes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mode-card,
+.preset-chip {
+  padding: 1.35rem;
+}
+
+.mode-card--auto {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(242, 237, 232, 0.9));
+}
+
+.mode-card--light {
+  background: linear-gradient(180deg, rgba(255, 252, 248, 0.92), rgba(245, 238, 231, 0.92));
+}
+
+.mode-card--dark {
+  background: linear-gradient(180deg, rgba(94, 87, 84, 0.92), rgba(72, 66, 64, 0.96));
+}
+
+.mode-card--dark h3,
+.mode-card--dark p {
+  color: rgba(246, 239, 233, 0.92);
+}
+
+.theme-studio__presets {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 1rem;
+}
+
+.preset-chip strong {
+  color: rgba(72, 59, 53, 0.95);
+  font-size: 1rem;
+}
+
+@media (max-width: 1180px) {
+  .home-editorial,
+  .theme-studio,
+  .anchor-grid,
+  .home-rhythm__grid,
+  .home-shot-grid,
+  .theme-studio__modes,
+  .theme-studio__presets {
     grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .intro-visual {
-    grid-template-columns: 1fr;
-  }
-
-  .experience-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .intro-content h2 {
-    font-size: 1.8rem;
   }
 }
 
-@media (max-width: 768px) {
-  .core-features-section {
-    padding: 1.5rem 0.75rem;
+@media (max-width: 767px) {
+  .home-editorial__copy,
+  .theme-studio__copy,
+  .fact-card,
+  .anchor-card,
+  .rhythm-card,
+  .mode-card,
+  .preset-chip {
+    padding: 1.2rem;
+    border-radius: 1.3rem;
   }
 
-  .core-features-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .home-editorial__copy h2,
+  .home-rhythm__intro h2,
+  .theme-studio__copy h2 {
+    font-size: 2rem;
   }
 
-  .feature-card {
-    padding: 1.5rem;
+  .home-editorial__actions {
+    flex-direction: column;
   }
 
-  .intro-section {
-    margin: 2rem 0;
-  }
-
-  .intro-visual {
-    grid-template-columns: 1fr;
-  }
-
-  .theme-comparison {
-    grid-template-columns: 1fr;
+  .home-link {
+    width: 100%;
   }
 }
 </style>

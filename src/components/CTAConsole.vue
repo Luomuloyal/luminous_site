@@ -178,9 +178,12 @@ function actionProps(action) {
   padding: 2.5rem;
   width: 100%;
   box-sizing: border-box;
-  background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(248,249,250,0.3));
-  border: 1px solid rgba(100, 116, 139, 0.08);
-  border-radius: 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(215, 199, 187, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,0.82), rgba(248,242,237,0.9));
+  border: 1px solid rgba(132, 120, 113, 0.12);
+  border-radius: 1.9rem;
+  box-shadow: 0 24px 56px rgba(126, 111, 103, 0.08);
 }
 
 .cta-console__meta {
@@ -194,31 +197,32 @@ function actionProps(action) {
   display: block;
   font-size: 0.75rem;
   font-weight: 700;
-  color: rgba(100, 110, 120, 0.6);
+  color: rgba(108, 95, 89, 0.7);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.14em;
 }
 
 .cta-console__meta h2 {
   margin: 0;
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: rgba(15, 23, 42, 0.95);
-  line-height: 1.3;
+  font-size: clamp(1.9rem, 3vw, 2.7rem);
+  font-weight: 700;
+  color: rgba(72, 59, 53, 0.96);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
 }
 
 .cta-console__meta > p {
   margin: 0;
-  color: rgba(71, 85, 105, 0.75);
-  line-height: 1.6;
-  font-size: 0.95rem;
+  color: rgba(98, 85, 79, 0.8);
+  line-height: 1.75;
+  font-size: 0.98rem;
 }
 
 .cta-console__summary {
   padding: 1.25rem;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(132, 120, 113, 0.08);
+  border-radius: 1.25rem;
   text-align: center;
 }
 
@@ -226,15 +230,17 @@ function actionProps(action) {
   display: block;
   font-size: 0.85rem;
   font-weight: 700;
-  color: rgba(15, 23, 42, 0.9);
+  color: rgba(72, 59, 53, 0.9);
   margin-bottom: 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .cta-console__summary p {
   margin: 0;
   font-size: 0.85rem;
-  color: rgba(71, 85, 105, 0.7);
-  line-height: 1.5;
+  color: rgba(98, 85, 79, 0.72);
+  line-height: 1.65;
 }
 
 .cta-console__runtime {
@@ -246,9 +252,9 @@ function actionProps(action) {
 
 .cta-console__runtime-card {
   padding: 0.75rem 1.25rem;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(132, 120, 113, 0.08);
+  border-radius: 1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -260,9 +266,9 @@ function actionProps(action) {
   display: block;
   font-size: 0.7rem;
   font-weight: 700;
-  color: rgba(100, 110, 120, 0.6);
+  color: rgba(108, 95, 89, 0.62);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.12em;
   margin-bottom: 0.5rem;
 }
 
@@ -270,7 +276,7 @@ function actionProps(action) {
   display: block;
   font-size: 1rem;
   font-weight: 800;
-  color: rgba(15, 23, 42, 0.95);
+  color: rgba(72, 59, 53, 0.95);
 }
 
 .cta-console__actions {
@@ -285,10 +291,10 @@ function actionProps(action) {
   width: 100%;
   padding: 1.2rem 1.75rem;
   box-sizing: border-box;
-  background: #ffffff;
-  border: 2px solid rgba(100, 116, 139, 0.12);
-  border-radius: 0.75rem;
-  color: rgba(15, 23, 42, 0.95);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(132, 120, 113, 0.12);
+  border-radius: 1.2rem;
+  color: rgba(72, 59, 53, 0.95);
   text-decoration: none;
   font-weight: 700;
   font-size: 1rem;
@@ -306,41 +312,41 @@ function actionProps(action) {
   display: block;
   font-size: 1rem;
   font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
+  color: rgba(72, 59, 53, 0.95);
 }
 
 .cta-console__button small {
   display: block;
   font-size: 0.8rem;
-  color: rgba(100, 110, 120, 0.7);
+  color: rgba(108, 95, 89, 0.72);
   font-weight: 500;
 }
 
 .cta-console__button--primary {
-  background: linear-gradient(135deg, rgba(200, 240, 216, 0.25) 0%, rgba(200, 240, 216, 0.15) 100%);
-  border-color: rgba(200, 240, 216, 0.6);
-  color: rgba(41, 50, 65, 0.98);
-  box-shadow: 0 4px 16px rgba(200, 240, 216, 0.15);
+  background: linear-gradient(135deg, rgba(191, 166, 158, 0.18) 0%, rgba(215, 199, 187, 0.24) 100%);
+  border-color: rgba(191, 166, 158, 0.22);
+  color: rgba(72, 59, 53, 0.98);
+  box-shadow: 0 12px 24px rgba(126, 111, 103, 0.08);
 }
 
 .cta-console__button--primary:hover:not(.is-disabled) {
-  background: linear-gradient(135deg, rgba(200, 240, 216, 0.35) 0%, rgba(200, 240, 216, 0.25) 100%);
-  border-color: rgba(200, 240, 216, 0.8);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(200, 240, 216, 0.25);
+  background: linear-gradient(135deg, rgba(191, 166, 158, 0.24) 0%, rgba(215, 199, 187, 0.3) 100%);
+  border-color: rgba(191, 166, 158, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 32px rgba(126, 111, 103, 0.11);
 }
 
 .cta-console__button--secondary {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(100, 116, 139, 0.2);
-  color: rgba(71, 85, 105, 0.9);
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(132, 120, 113, 0.14);
+  color: rgba(98, 85, 79, 0.9);
 }
 
 .cta-console__button--secondary:hover:not(.is-disabled) {
   background: #ffffff;
-  border-color: rgba(100, 116, 139, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: rgba(132, 120, 113, 0.22);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 30px rgba(126, 111, 103, 0.1);
 }
 
 .cta-console__button.is-disabled {
@@ -360,7 +366,7 @@ function actionProps(action) {
 }
 
 .cta-console--compact .cta-console__meta h2 {
-  font-size: 1.4rem;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
 }
 
 .cta-console--compact .cta-console__actions {

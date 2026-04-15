@@ -100,8 +100,8 @@ const selectedScenario = ref(0)
 
       <GlassSection
         eyebrow="More Stories"
-        title="一条工具能否真正融入四种截然不同的用药场景？"
-        lead="Luminous 的设计将识别、提醒、安全辅助与历史沉淀编织在一起，让它既能服务个人，也能扩展到家庭、医疗团队与公共卫生。"
+        title="一条工具能否真正融入四种不同的日常用药场景？"
+        lead="Luminous 的设计把识别、提醒、安全辅助与历史沉淀编织在一起，更适合服务个人、家庭与照护协作等当前能力可支撑的场景。"
       >
         <div class="story-summary">
           <article class="summary-card">
@@ -111,13 +111,13 @@ const selectedScenario = ref(0)
           </article>
           <article class="summary-card">
             <span>管理层</span>
-            <h4>灵活的提醒与分享机制</h4>
-            <p>提醒、打卡与共享设计都支持从个人到多人的场景，权限与责任清晰。</p>
+            <h4>提醒与打卡构成稳定节奏</h4>
+            <p>提醒和打卡让一次临时查药，继续变成真正能长期执行的用药管理路径。</p>
           </article>
           <article class="summary-card">
             <span>安全层</span>
-            <h4>适应不同的风险承受度</h4>
-            <p>安全辅助的强度可调，既能满足谨慎的老年患者，也不会给健康人群增加负担。</p>
+            <h4>风险提示先说边界</h4>
+            <p>安全辅助先帮助用户意识到哪里需要继续核对，而不是制造虚假的确定感。</p>
           </article>
         </div>
       </GlassSection>

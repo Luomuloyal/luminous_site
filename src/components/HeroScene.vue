@@ -1,8 +1,5 @@
 <script setup>
-import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-
-import GlitchTitle from './GlitchTitle.vue'
 
 const props = defineProps({
   brand: {
@@ -24,13 +21,14 @@ const props = defineProps({
   <section class="hero-scene hero-scene--2d">
     <div class="hero-scene__inner">
       <div class="hero-scene__copy">
-        <span class="hero-scene__eyebrow" data-hero-item>Neon Ritual for Safer Doses</span>
+        <span class="hero-scene__eyebrow" data-hero-item>Official Website</span>
         <div class="hero-title">
-          <span class="hero-title-line1" data-hero-item>Luminous</span>
-          <span class="hero-title-line2" data-hero-item>智慧用药助手</span>
+          <span class="hero-title-line1" data-hero-item>{{ props.brand.name }}</span>
+          <span class="hero-title-line2" data-hero-item>{{ props.brand.cnName }}</span>
         </div>
         <p class="hero-scene__lead" data-hero-item>
-          把药物识别、AI 解读、提醒、打卡和安全辅助压缩成一条 <span style="color: var(--pastel-purple)">更迷幻</span>、但更清晰的未来感体验链路。
+          这次官网重构回到真实源码能力之上，把查药、识药、提醒、打卡、AI 解读和安全辅助整理成一条
+          更温和、更清楚、也更可信的产品叙事。
         </p>
 
         <div class="hero-scene__actions" data-hero-item>

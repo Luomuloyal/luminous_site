@@ -31,8 +31,8 @@ const toggleSection = (index) => {
     <div class="page__container">
       <GlassSection
         eyebrow="Core Principle"
-        title="你的用药数据的三层防护"
-        lead="从收集原则、存储加密到访问控制，我们在产品设计的每一层都把你的隐私放在最高优先级。"
+        title="把数据边界讲清楚，比写满口号更重要"
+        lead="这次重构后的隐私页只强调当前项目里可以被解释清楚的数据范围、AI 参与时机和用户控制权。"
       >
         <div class="principles-grid">
           <article class="principle-card">
@@ -100,82 +100,82 @@ const toggleSection = (index) => {
           <article class="right-card">
             <span class="right-icon">👁️</span>
             <h4>查看与访问</h4>
-            <p>随时查看应用中存储的全部个人数据，包括识别结果、提醒历史与打卡记录。</p>
-            <a href="#" class="action-link">如何导出数据</a>
+            <p>识别历史、提醒计划、打卡记录与相册条目，都应该尽量以用户可回看的形式存在。</p>
+            <span class="action-link">应用内逐步完善</span>
           </article>
 
           <article class="right-card">
             <span class="right-icon">✏️</span>
             <h4>编辑与更正</h4>
-            <p>修改不准确的信息，比如药物名称、用法用量或个人信息。</p>
-            <a href="#" class="action-link">编辑指南</a>
+            <p>提醒计划、药物备注或部分个人资料出现错误时，用户应该能自己改回来，而不是只能重新开始。</p>
+            <span class="action-link">以应用能力为准</span>
           </article>
 
           <article class="right-card">
             <span class="right-icon">🗑️</span>
             <h4>删除与遗忘</h4>
-            <p>删除任何不需要的数据，我们会彻底清除对应的副本与备份。</p>
-            <a href="#" class="action-link">请求删除</a>
+            <p>如果某条识别记录、提醒或相册内容已经没有保留价值，用户应能主动删除它。</p>
+            <span class="action-link">不展示伪入口</span>
           </article>
 
           <article class="right-card">
             <span class="right-icon">🔗</span>
             <h4>可携带权</h4>
-            <p>以标准格式导出全部数据，迁移到其他应用或保存为个人备份。</p>
-            <a href="#" class="action-link">数据导出</a>
+            <p>导出与迁移能力会随着产品迭代继续完善，官网不再提前承诺还没落地好的具体格式。</p>
+            <span class="action-link">后续随版本同步</span>
           </article>
 
           <article class="right-card">
             <span class="right-icon">🚫</span>
             <h4>撤销同意</h4>
-            <p>随时撤销之前授予的任何权限，比如停止与医生的数据共享。</p>
-            <a href="#" class="action-link">管理权限</a>
+            <p>你可以停用 AI 解读、取消提醒、退出登录或关闭相关权限，而不是被迫接受整套能力。</p>
+            <span class="action-link">用户拥有选择权</span>
           </article>
 
           <article class="right-card">
             <span class="right-icon">❌</span>
             <h4>账户注销</h4>
-            <p>注销账户时，全部个人数据会按照法律要求的时间表安全删除。</p>
-            <a href="#" class="action-link">请求注销</a>
+            <p>账户注销与数据清理会按照实际产品能力和后端流程推进，不在官网里用空白承诺替代实现。</p>
+            <span class="action-link">以实际流程为准</span>
           </article>
         </div>
       </GlassSection>
 
       <GlassSection
         eyebrow="Technical Safeguard"
-        title="我们怎样在技术层面保护你的数据"
-        lead="除了政策与流程，我们还在系统架构、网络通信、存储加密的每一环都部署了防护措施。"
+        title="当前代码能说明的技术侧边界"
+        lead="我们只描述仓库里已经明确出现的本地存储、数据分层、JWT 会话与 AI 代理方式，不去夸大看不见的部分。"
       >
         <div class="safeguard-timeline">
           <div class="safeguard-step">
             <span class="safeguard-phase">在你的设备上</span>
             <div class="safeguard-detail">
               <h4>本地优先</h4>
-              <p>除非你明确选择分享或启用 AI 解读，否则识别结果与提醒记录都只存在你的设备上。即使丢失设备，云端也没有备份副本。</p>
+              <p>项目中已经接入本地数据库、偏好存储与本地通知能力，说明提醒、历史和部分状态被设计为尽量先在设备侧完成。</p>
             </div>
           </div>
 
           <div class="safeguard-step">
             <span class="safeguard-phase">在网络传输中</span>
             <div class="safeguard-detail">
-              <h4>端到端加密</h4>
-              <p>所有网络通信都使用 TLS 1.2+ 加密，防止中间人攻击。敏感数据如用户密码在传输前还会进行额外的加密。</p>
+              <h4>通过服务端统一代理</h4>
+              <p>客户端不会直接把所有外部能力散落到多个地方调用，而是通过后端 API 统一承接认证、查药、扫描记录和 AI 相关请求。</p>
             </div>
           </div>
 
           <div class="safeguard-step">
             <span class="safeguard-phase">在我们的服务器上</span>
             <div class="safeguard-detail">
-              <h4>应用级别加密</h4>
-              <p>即使数据已送达服务器，用户数据也以加密形式存储在 MongoDB 中。用户只能通过自己的认证令牌访问。</p>
+              <h4>数据分层</h4>
+              <p>当前代码里，用户业务数据与药品结构化数据分别由 MongoDB 与 MySQL 承担，JWT 会话负责维持登录态边界。</p>
             </div>
           </div>
 
           <div class="safeguard-step">
             <span class="safeguard-phase">对第三方 API</span>
             <div class="safeguard-detail">
-              <h4>数据处理协议</h4>
-              <p>调用豆包 AI 时，我们会签订数据处理协议，保证 AI 提供商不存储或二次使用数据。处理完成即刻删除。</p>
+              <h4>AI 按需参与</h4>
+              <p>AI 相关能力通过后端代理，并只在你主动使用 AI 解读或安全辅助时才产生意义，官网不再把它写成默认常驻能力。</p>
             </div>
           </div>
         </div>
@@ -183,20 +183,20 @@ const toggleSection = (index) => {
 
       <GlassSection
         eyebrow="If You Have Questions"
-        title="隐私与安全疑问？让我们帮你解答"
-        lead="如果这份政策中还有不清楚的地方，或者你想了解更多细节，我们很乐意倾听。"
+        title="如果你想继续核对这些描述"
+        lead="当前更可信的沟通方式，是去看代码、看 issue，或在应用能力里直接确认，而不是依赖一个未经验证的联系入口。"
       >
         <div class="contact-section">
           <p>
-            你可以通过以下方式与我们联系，我们会在 48 小时内回复关于隐私与安全的问题：
+            目前更现实的沟通与核对路径有这些：
           </p>
           <ul class="contact-methods">
             <li><strong>应用内反馈：</strong>打开应用 → 设置 → 反馈与建议</li>
-            <li><strong>官方邮箱：</strong>contact@luminous.app（隐私问题请标注 [Privacy]）</li>
-            <li><strong>GitHub Issue：</strong>提交到公开仓库，我们会公开回复</li>
+            <li><strong>项目仓库：</strong>通过 Issue 或提交记录查看当前实现与后续变更</li>
+            <li><strong>官网同步：</strong>本页会随着数据流或功能边界变动持续修订</li>
           </ul>
           <p style="margin-top: 1rem; color: rgba(71, 85, 105, 0.75);">
-            <em>最后更新：2026 年 3 月 29 日</em>
+            <em>最后更新：2026 年 4 月 15 日</em>
           </p>
         </div>
       </GlassSection>

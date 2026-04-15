@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+
 import CTAConsole from '../components/CTAConsole.vue'
 import GlassSection from '../components/GlassSection.vue'
 import RuntimeShotCard from '../components/RuntimeShotCard.vue'
@@ -9,6 +10,23 @@ import { usePageMotion } from '../composables/usePageMotion'
 const pageRef = ref(null)
 
 usePageMotion(pageRef)
+
+const themeStories = [
+  {
+    title: '显示模式',
+    body: '跟随系统、浅色、深色三种模式，让应用和设备环境保持同频，不逼着用户适应它。',
+  },
+  {
+    title: '五套预设主题',
+    body: '柔岚、月雾、神树、虚霭、浅砂都来自主项目设置页，这次官网也借用了同样的温和气质。',
+  },
+  {
+    title: '更少噪音，更耐看',
+    body: '莫兰迪色系不靠高饱和取胜，而是靠层次、材质感和阅读舒适度把信息托起来。',
+  },
+]
+
+const flowLabels = ['扫描 / 搜索', '阅读', '沉淀', '提醒', '复查']
 </script>
 
 <template>
@@ -16,129 +34,92 @@ usePageMotion(pageRef)
     <section class="page-hero">
       <div class="page__container">
         <div class="page-hero__content" data-hero-item>
-          <span class="page-hero__eyebrow">Use Journey</span>
-          <h1>体验之旅</h1>
+          <span class="page-hero__eyebrow">Experience Journey</span>
+          <h1>体验路径</h1>
           <p>
-            从拍照识别、智能理解、到日常提醒和安全护航，我们把复杂的用药管理变成自然而然的日常节奏。
+            这页讲的不是“看起来多未来”，而是产品如何把一次偶发操作，做成更适合长期使用的节奏。
           </p>
         </div>
       </div>
     </section>
 
     <div class="page__container">
-      <section class="experience-hero">
-        <div class="experience-intro">
-          <span class="experience-eyebrow">Product Journey</span>
-          <h2>用药变得更顺手</h2>
-          <p>不是冷冰冰的工具堆砌，而是从识别、理解、记录、提醒到守护，每个环节都经过精心设计。让用药管理从复杂变得自然。</p>
+      <section class="experience-intro">
+        <div class="experience-intro__copy">
+          <span class="experience-kicker">How It Flows</span>
+          <h2>一次查药，之后还能继续发生什么</h2>
+          <p>
+            真正的体验设计不是把每一页都做得像海报，而是让入口、理解、提醒和回看能在时间上接得住彼此。
+          </p>
         </div>
+
         <div class="experience-flow-preview">
-          <div class="flow-badge">📷</div>
-          <div class="flow-badge">📖</div>
-          <div class="flow-badge">💾</div>
-          <div class="flow-badge">🔔</div>
-          <div class="flow-badge">🛡️</div>
+          <span v-for="label in flowLabels" :key="label" class="flow-pill">{{ label }}</span>
         </div>
       </section>
 
-      <section class="experience-timeline">
-        <div
+      <section class="experience-scenes">
+        <article
           v-for="(scene, index) in siteContent.experienceScenes"
           :key="scene.label"
-          class="timeline-item"
-          :class="{ 'timeline-item--alt': index % 2 === 1 }"
+          class="scene-row"
+          :class="{ 'scene-row--reverse': index % 2 === 1 }"
         >
-          <div class="timeline-number">{{ String(index + 1).padStart(2, '0') }}</div>
-          
-          <div class="timeline-body">
-            <div class="timeline-content">
-              <span class="timeline-label">{{ scene.en }}</span>
-              <h3>{{ scene.title }}</h3>
-              <p class="timeline-desc">{{ scene.body }}</p>
-              <ul class="timeline-points">
-                <li v-for="point in scene.points" :key="point">{{ point }}</li>
-              </ul>
-            </div>
-
-            <div class="timeline-visual">
-              <RuntimeShotCard
-                :shot-id="scene.shotId"
-                :title="scene.title"
-                :caption="scene.body"
-                :fallback-scene="scene"
-                compact
-              />
-            </div>
+          <div class="scene-copy">
+            <span>{{ scene.en }}</span>
+            <h3>{{ scene.title }}</h3>
+            <p>{{ scene.body }}</p>
+            <ul>
+              <li v-for="point in scene.points" :key="point">{{ point }}</li>
+            </ul>
           </div>
-        </div>
+
+          <div class="scene-visual">
+            <RuntimeShotCard
+              :shot-id="scene.shotId"
+              :title="scene.title"
+              :caption="scene.body"
+              :fallback-scene="scene"
+              compact
+            />
+          </div>
+        </article>
       </section>
 
       <GlassSection
-        eyebrow="Core Flow"
-        title="五环节无缝流转"
-        lead="从拿起手机的那一刻，五个精心设计的环节从容流转，最终你会感受到这不是工具，而是陪伴。"
+        eyebrow="Theme Direction"
+        title="官网视觉也跟着应用一起收口"
+        lead="我们保留层次感、材质感和少量留白，让页面更像一份耐看的产品档案，而不是短暂刺眼的展示稿。"
       >
-        <div class="flow-detailed">
-          <div class="flow-item">
-            <div class="flow-title">
-              <span class="flow-emoji">📷</span>
-              <h4>识别</h4>
-            </div>
-            <p>拍一张照片，AI 秒识别药品信息。成分、用法、禁忌一览无遗。</p>
-          </div>
-          <div class="flow-connector">→</div>
-          <div class="flow-item">
-            <div class="flow-title">
-              <span class="flow-emoji">📖</span>
-              <h4>理解</h4>
-            </div>
-            <p>复杂的医学信息被翻译成简单易懂的文字。你快速抓住关键。</p>
-          </div>
-          <div class="flow-connector">→</div>
-          <div class="flow-item">
-            <div class="flow-title">
-              <span class="flow-emoji">💾</span>
-              <h4>记录</h4>
-            </div>
-            <p>自动保存，手动标记。你的用药历史变成有迹可循的故事。</p>
-          </div>
-          <div class="flow-connector">→</div>
-          <div class="flow-item">
-            <div class="flow-title">
-              <span class="flow-emoji">🔔</span>
-              <h4>提醒</h4>
-            </div>
-            <p>个性化节奏，不烦人。按时用药再也不会遗漏。</p>
-          </div>
-          <div class="flow-connector">→</div>
-          <div class="flow-item">
-            <div class="flow-title">
-              <span class="flow-emoji">🛡️</span>
-              <h4>守护</h4>
-            </div>
-            <p>实时检测风险，药物相互作用一览无遗。为你的健康把关。</p>
-          </div>
+        <div class="theme-story-grid">
+          <article v-for="item in themeStories" :key="item.title" class="theme-story-card">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.body }}</p>
+          </article>
         </div>
       </GlassSection>
 
       <GlassSection
-        eyebrow="Personalization"
-        title="贴身的视觉陪伴"
-        lead="从深浅切换到风格定制，每个选择都是为了让你感受到这是为你设计的产品。"
+        eyebrow="Experience Principle"
+        title="这次重构的三个体验原则"
+        lead="页面风格、文案语气和功能介绍都围绕同一个目标服务：让官网和产品本身一样，尽量清楚、温和、可信。"
       >
-        <div class="personalization-grid">
-          <div class="personalization-card">
-            <h4>🌓 深浅主题</h4>
-            <p>护眼深色夜用，清爽浅色日用。一键切换，无缝适应你的使用习惯。</p>
-          </div>
-          <div class="personalization-card">
-            <h4>🎨 7 种风格</h4>
-            <p>柔岚月雾神树虚霭，霜尘浅砂烟波。每种风格都有独特气质，总有一款是你的。</p>
-          </div>
-          <div class="personalization-card">
-            <h4>⏰ 节奏定制</h4>
-            <p>提醒时间、提醒频率、提醒方式，全由你主导。真正的个性化体验。</p>
-          </div>
+        <div class="principle-grid">
+          <article class="principle-card-local">
+            <span>01</span>
+            <h4>入口统一</h4>
+            <p>搜索和扫描不再被描述成两套割裂逻辑，而是同一条阅读主线的不同起点。</p>
+          </article>
+          <article class="principle-card-local">
+            <span>02</span>
+            <h4>结果可继续</h4>
+            <p>读过一次、识别过一次、设置过一次提醒之后，都应该能在后续页面里找到延续关系。</p>
+          </article>
+          <article class="principle-card-local">
+            <span>03</span>
+            <h4>视觉不抢答案</h4>
+            <p>官网这次收敛到浅色莫兰迪基调，让阅读与理解成为第一优先级，而不是高刺激视觉秀场。</p>
+          </article>
         </div>
       </GlassSection>
 
@@ -148,317 +129,165 @@ usePageMotion(pageRef)
 </template>
 
 <style scoped>
-.experience-hero {
+.experience-intro,
+.scene-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 1.2rem;
   align-items: center;
-  margin: 3rem 0;
 }
 
-.experience-intro {
-  padding: 0;
+.experience-intro__copy,
+.scene-copy,
+.theme-story-card,
+.principle-card-local {
+  border: 1px solid rgba(132, 120, 113, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(247, 241, 236, 0.84));
+  box-shadow: 0 22px 48px rgba(126, 111, 103, 0.08);
 }
 
-.experience-eyebrow {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: rgba(100, 110, 120, 0.6);
+.experience-intro__copy,
+.scene-copy {
+  padding: 2rem;
+  border-radius: 1.9rem;
+}
+
+.experience-kicker,
+.scene-copy span {
+  display: inline-flex;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 1rem;
+  color: rgba(112, 98, 92, 0.7);
 }
 
-.experience-intro h2 {
-  margin: 0 0 1rem 0;
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: rgba(15, 23, 42, 0.95);
-  line-height: 1.2;
+.experience-intro__copy h2,
+.scene-copy h3 {
+  margin: 1rem 0 0;
+  color: rgba(72, 59, 53, 0.96);
 }
 
-.experience-intro > p {
-  margin: 0;
-  font-size: 1rem;
-  color: rgba(71, 85, 105, 0.75);
-  line-height: 1.7;
+.experience-intro__copy h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.experience-intro__copy p,
+.scene-copy p,
+.theme-story-card p,
+.principle-card-local p {
+  margin: 0.9rem 0 0;
+  color: rgba(98, 85, 79, 0.78);
+  line-height: 1.75;
+}
+
+.experience-flow-preview,
+.theme-story-grid,
+.principle-grid {
+  display: grid;
+  gap: 1rem;
 }
 
 .experience-flow-preview {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-.flow-badge {
-  padding: 2rem 0.5rem;
-  background: linear-gradient(135deg, #FFF9F7 0%, #FFFBF9 100%);
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
-  text-align: center;
-  font-size: 1.75rem;
+.flow-pill {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.experience-timeline {
-  margin: 4rem 0;
-  position: relative;
-}
-
-.timeline-item {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  align-items: start;
-}
-
-.timeline-item--alt {
-  grid-template-columns: 1fr 60px;
-}
-
-.timeline-item--alt .timeline-body {
-  grid-template-columns: 1fr 1fr;
-}
-
-.timeline-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  background: rgba(200, 240, 216, 0.12);
-  border: 2px solid rgba(200, 240, 216, 0.3);
-  border-radius: 50%;
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: rgba(41, 50, 65, 0.8);
-  flex-shrink: 0;
-}
-
-.timeline-item--alt .timeline-number {
-  order: 2;
-}
-
-.timeline-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: center;
-}
-
-.timeline-content {
-  padding: 1.5rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
-}
-
-.timeline-label {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: rgba(100, 110, 120, 0.6);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-content h3 {
-  margin: 0 0 0.75rem 0;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
-}
-
-.timeline-desc {
-  margin: 0 0 1rem 0;
-  color: rgba(71, 85, 105, 0.7);
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
-
-.timeline-points {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.timeline-points li {
-  padding-left: 1.5rem;
-  position: relative;
-  color: rgba(71, 85, 105, 0.7);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.timeline-points li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: rgba(200, 240, 216, 0.6);
-  font-weight: bold;
-}
-
-.timeline-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flow-detailed {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  margin: 2rem 0;
-  flex-wrap: wrap;
-  padding: 2rem;
-  background: #ffffff;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-}
-
-.flow-item {
-  flex: 0 1 160px;
+  min-height: 6rem;
   padding: 1rem;
+  border-radius: 1.4rem;
+  border: 1px solid rgba(132, 120, 113, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(244, 238, 233, 0.9));
+  color: rgba(93, 80, 74, 0.86);
   text-align: center;
+  font-weight: 600;
+  box-shadow: 0 18px 34px rgba(126, 111, 103, 0.07);
 }
 
-.flow-title {
-  margin-bottom: 0.75rem;
-}
-
-.flow-emoji {
-  font-size: 1.75rem;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.flow-item h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
-}
-
-.flow-item p {
-  margin: 0;
-  color: rgba(71, 85, 105, 0.7);
-  font-size: 0.8rem;
-  line-height: 1.4;
-}
-
-.flow-connector {
-  color: rgba(200, 240, 216, 0.4);
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 0 0.5rem;
-}
-
-.personalization-grid {
+.experience-scenes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
+  gap: 1.2rem;
 }
 
-.personalization-card {
-  padding: 1.5rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
+.scene-row--reverse {
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
 }
 
-.personalization-card h4 {
-  margin: 0 0 0.75rem 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
+.scene-copy ul {
+  padding: 0;
+  margin: 1rem 0 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
 }
 
-.personalization-card p {
+.scene-copy li {
+  color: rgba(98, 85, 79, 0.76);
+}
+
+.scene-copy li::before {
+  content: '·';
+  margin-right: 0.45rem;
+  color: rgba(112, 98, 92, 0.72);
+}
+
+.scene-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.theme-story-grid,
+.principle-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.theme-story-card,
+.principle-card-local {
+  padding: 1.4rem;
+  border-radius: 1.45rem;
+}
+
+.theme-story-card h4,
+.principle-card-local h4 {
   margin: 0;
-  color: rgba(71, 85, 105, 0.7);
-  line-height: 1.6;
-  font-size: 0.9rem;
+  color: rgba(72, 59, 53, 0.95);
 }
 
-@media (max-width: 1024px) {
-  .experience-hero {
+.principle-card-local span {
+  display: inline-flex;
+  width: 2.6rem;
+  height: 2.6rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(184, 198, 177, 0.18);
+  color: rgba(98, 85, 79, 0.88);
+  font-weight: 700;
+}
+
+@media (max-width: 1180px) {
+  .experience-intro,
+  .scene-row,
+  .scene-row--reverse,
+  .experience-flow-preview,
+  .theme-story-grid,
+  .principle-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .timeline-body {
-    grid-template-columns: 1fr;
-  }
-
-  .experience-flow-preview {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  .flow-item {
-    flex: 0 1 140px;
   }
 }
 
-@media (max-width: 768px) {
-  .experience-hero {
-    margin: 2rem 0;
-  }
-
-  .experience-intro h2 {
-    font-size: 1.6rem;
-  }
-
-  .timeline-item {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .timeline-item--alt {
-    grid-template-columns: 1fr;
-  }
-
-  .timeline-number {
-    width: 50px;
-    height: 50px;
-    font-size: 1rem;
-  }
-
-  .experience-flow-preview {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
-  }
-
-  .flow-badge {
-    padding: 1.5rem 0.25rem;
-    font-size: 1.3rem;
-  }
-
-  .flow-detailed {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.5rem;
-  }
-
-  .flow-item {
-    flex: 1 1 100%;
-  }
-
-  .flow-connector {
-    transform: rotate(90deg);
-  }
-
-  .personalization-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 767px) {
+  .experience-intro__copy,
+  .scene-copy,
+  .theme-story-card,
+  .principle-card-local {
+    padding: 1.2rem;
+    border-radius: 1.3rem;
   }
 }
 </style>

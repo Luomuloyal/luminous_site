@@ -2851,3 +2851,407 @@ canvas {
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+/* 2026 refactor: light Morandi system */
+:root {
+  --page-width: min(1180px, calc(100vw - 2rem));
+  --surface-glass: rgba(255, 252, 248, 0.72);
+  --surface-panel: rgba(255, 255, 255, 0.88);
+  --surface-border: 1px solid rgba(132, 120, 113, 0.12);
+  --copy-soft: rgba(98, 85, 79, 0.82);
+  --copy-muted: rgba(123, 110, 103, 0.68);
+  --copy-strong: rgba(72, 59, 53, 0.96);
+  --shadow-xl: 0 24px 56px rgba(126, 111, 103, 0.08);
+  --shadow-glow: 0 18px 34px rgba(126, 111, 103, 0.06);
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(184, 195, 207, 0.18), transparent 24%),
+    radial-gradient(circle at 88% 14%, rgba(200, 184, 179, 0.14), transparent 24%),
+    radial-gradient(circle at 52% 100%, rgba(196, 206, 195, 0.12), transparent 30%),
+    linear-gradient(180deg, #f7f5f2 0%, #f3f1ef 50%, #f7f4f1 100%);
+  color: var(--copy-soft);
+}
+
+body::selection {
+  background: rgba(184, 195, 207, 0.24);
+}
+
+.site-shell {
+  background: transparent;
+}
+
+.site-nav {
+  padding-top: 1rem;
+}
+
+.site-nav__inner,
+.site-nav__mobile,
+.glass-section__inner,
+.feature-orbit,
+.story-scene,
+.cta-console,
+.runtime-shot-card,
+.runtime-meta-card,
+.hero-scene__panel,
+.home-pulse-card,
+.teaser-card,
+.boundary-card,
+.platform-card,
+.faq-item,
+.device-mockup__frame,
+.site-footer__inner {
+  border: 1px solid rgba(132, 120, 113, 0.12);
+  background:
+    radial-gradient(circle at top right, var(--route-glow, rgba(184, 195, 207, 0.12)), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(248, 243, 239, 0.86));
+  box-shadow: 0 22px 48px rgba(126, 111, 103, 0.08);
+}
+
+.site-nav__inner {
+  padding: 0.72rem 1rem;
+  border-radius: 999px;
+  backdrop-filter: blur(22px);
+}
+
+.site-nav__brand strong,
+.site-footer__brand strong,
+.site-nav__link span,
+.site-nav__mobile-link strong,
+.site-nav__mobile-header strong,
+.page-hero h1,
+.hero-scene h1,
+.glass-section h2,
+.cta-console h2,
+.feature-orbit h3,
+.story-scene h2,
+.runtime-shot-card__copy h3,
+.runtime-shot-card__placeholder strong,
+.device-mockup__hero h4 {
+  color: var(--copy-strong);
+}
+
+.site-nav__brand span,
+.site-footer__brand span,
+.site-nav__link small,
+.site-nav__mobile-link span,
+.site-nav__mobile-link small,
+.site-nav__mobile-header span,
+.page-hero__eyebrow,
+.hero-scene__eyebrow,
+.glass-section__eyebrow,
+.feature-orbit__label,
+.cta-console__status {
+  color: var(--copy-muted);
+}
+
+.page-hero__eyebrow,
+.hero-scene__eyebrow,
+.glass-section__eyebrow,
+.feature-orbit__label,
+.cta-console__status {
+  background: rgba(255, 255, 255, 0.64);
+  border: 1px solid var(--route-border, rgba(132, 120, 113, 0.12));
+  letter-spacing: 0.14em;
+}
+
+.page-hero {
+  padding: 3.5rem 0 2rem;
+}
+
+.page-hero::before {
+  background: radial-gradient(circle, var(--route-glow-secondary, rgba(184, 195, 207, 0.18)), transparent 70%);
+  filter: blur(70px);
+}
+
+.page-hero__content {
+  max-width: 52rem;
+}
+
+.page-hero h1 {
+  font-size: clamp(3rem, 6vw, 4.9rem);
+  font-family: 'Playfair Display', 'Space Grotesk', sans-serif;
+  font-weight: 600;
+}
+
+.page-hero p,
+.hero-scene__lead,
+.glass-section__lead,
+.feature-orbit__header p,
+.story-scene p,
+.cta-console__meta p,
+.site-footer__copy p,
+.runtime-shot-card__copy p,
+.runtime-shot-card__placeholder p,
+.device-mockup__hero p {
+  color: var(--copy-soft);
+}
+
+.hero-scene {
+  min-height: auto;
+  padding: 8rem 0 3rem;
+}
+
+.hero-scene__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 1.35rem;
+  align-items: start;
+}
+
+.hero-title {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 1.2rem;
+}
+
+.hero-title-line1 {
+  font-family: 'Playfair Display', 'Space Grotesk', sans-serif;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+  color: var(--copy-strong);
+}
+
+.hero-title-line2 {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  letter-spacing: 0.06em;
+  color: rgba(108, 95, 89, 0.72);
+}
+
+.hero-scene__lead {
+  margin-top: 1.15rem;
+  max-width: 40rem;
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+.hero-scene__actions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.site-nav__cta,
+.hero-scene__button {
+  min-height: 3.2rem;
+  padding: 0.95rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--route-border, rgba(132, 120, 113, 0.12));
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.site-nav__cta,
+.hero-scene__button--primary {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--route-accent, #b8c3cf) 22%, white),
+    color-mix(in srgb, var(--route-accent-secondary, #d2c3bc) 28%, white)
+  );
+  color: var(--copy-strong);
+  box-shadow: 0 14px 28px rgba(126, 111, 103, 0.08);
+}
+
+.hero-scene__button--secondary {
+  background: color-mix(in srgb, white 86%, var(--route-accent-tertiary, #c4cec3) 14%);
+  color: var(--copy-soft);
+}
+
+.hero-scene__button:hover,
+.site-nav__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(126, 111, 103, 0.1);
+}
+
+.site-nav__cta span,
+.hero-scene__button span,
+.site-nav__mobile-cta span {
+  color: var(--copy-strong);
+}
+
+.site-nav__cta small,
+.hero-scene__button small,
+.site-nav__mobile-cta small {
+  color: var(--copy-muted);
+}
+
+.hero-scene__highlights,
+.hero-scene__panels {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.hero-scene__highlights {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.hero-scene__highlight,
+.hero-scene__panel {
+  padding: 1.2rem;
+  border-radius: 1.5rem;
+}
+
+.hero-scene__highlight strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--route-accent, #b8c3cf) 18%, white);
+  color: rgba(98, 85, 79, 0.88);
+}
+
+.hero-scene__highlight h3,
+.hero-scene__panel h3 {
+  color: var(--copy-strong);
+}
+
+.hero-scene__highlight p,
+.hero-scene__panel p {
+  color: var(--copy-soft);
+}
+
+.hero-scene__panel span {
+  color: var(--copy-muted);
+  letter-spacing: 0.14em;
+}
+
+.glass-section__inner,
+.feature-orbit,
+.story-scene,
+.runtime-shot-card,
+.site-footer__inner {
+  border-radius: 2rem;
+}
+
+.glass-section__inner {
+  padding: 2rem;
+}
+
+.glass-section__lead {
+  max-width: 48rem;
+}
+
+.runtime-shot-card__badge,
+.runtime-shot-card__signal,
+.cta-console__summary,
+.cta-console__runtime-card,
+.runtime-meta-card,
+.device-mockup__panel {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(132, 120, 113, 0.1);
+}
+
+.runtime-shot-card__signal i {
+  background: linear-gradient(
+    135deg,
+    var(--route-accent, #b8c3cf),
+    var(--route-accent-secondary, #d2c3bc)
+  );
+}
+
+.device-mockup__frame {
+  padding: 0.85rem;
+}
+
+.device-mockup__screen,
+.runtime-shot-card__placeholder {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, white 92%, var(--route-accent-tertiary, #c4cec3) 8%) 0%,
+    color-mix(in srgb, white 84%, var(--route-accent, #b8c3cf) 16%) 100%
+  );
+}
+
+.device-mockup__topline small {
+  background: color-mix(in srgb, var(--route-accent, #b8c3cf) 16%, white);
+  color: rgba(93, 80, 74, 0.82);
+}
+
+.device-mockup__panel strong,
+.runtime-shot-card__signal span,
+.runtime-shot-card__badge small {
+  color: var(--copy-strong);
+}
+
+.site-footer {
+  padding: 0 0 2rem;
+}
+
+.site-footer__inner {
+  padding: 1.35rem;
+}
+
+.site-footer__links a {
+  color: var(--copy-soft);
+}
+
+.site-footer__beian {
+  color: var(--copy-muted);
+}
+
+.animation-selector__button,
+.site-nav__toggle,
+.site-nav__mobile-link,
+.site-nav__mobile-cta {
+  border: 1px solid rgba(132, 120, 113, 0.12);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.site-nav__toggle span {
+  background: rgba(98, 85, 79, 0.86);
+}
+
+.site-nav__mobile-wrap {
+  padding-top: 5.6rem;
+}
+
+@media (max-width: 1180px) {
+  .hero-scene__inner,
+  .hero-scene__highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --page-width: 100%;
+  }
+
+  .site-nav {
+    padding-top: 0.75rem;
+  }
+
+  .site-nav__inner,
+  .glass-section__inner,
+  .feature-orbit,
+  .story-scene,
+  .cta-console,
+  .site-footer__inner,
+  .runtime-shot-card,
+  .hero-scene__highlight,
+  .hero-scene__panel {
+    border-radius: 1.35rem;
+  }
+
+  .hero-scene {
+    padding-top: 7rem;
+  }
+
+  .hero-title-line1 {
+    font-size: clamp(2.9rem, 16vw, 4.2rem);
+  }
+
+  .hero-scene__actions {
+    flex-direction: column;
+  }
+
+  .site-nav__cta,
+  .hero-scene__button {
+    width: 100%;
+  }
+}

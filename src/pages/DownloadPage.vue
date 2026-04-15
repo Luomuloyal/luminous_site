@@ -4,7 +4,6 @@ import { computed, ref } from 'vue'
 import CTAConsole from '../components/CTAConsole.vue'
 import GlassSection from '../components/GlassSection.vue'
 import RuntimeShotCard from '../components/RuntimeShotCard.vue'
-import DeviceMockup from '../components/DeviceMockup.vue'
 import { useSiteManifest } from '../composables/useSiteManifest'
 import { siteContent } from '../content/siteContent'
 import { usePageMotion } from '../composables/usePageMotion'
@@ -14,74 +13,68 @@ const pageRef = ref(null)
 
 usePageMotion(pageRef)
 
-const { download, screenshots, getScreenshotById } = useSiteManifest()
-
-const screenshotRegistry = new Map(siteContent.screenshotSlots.map((item) => [item.id, item]))
+const { download } = useSiteManifest()
 
 const galleryShots = computed(() =>
   siteContent.downloadGalleryIds
-    .map((id) => screenshotRegistry.get(id))
-    .filter(Boolean)
-    .slice(0, 6)
+    .map((id) => siteContent.screenshotSlots.find((item) => item.id === id))
+    .filter(Boolean),
 )
-
-const featureScene = {
-  label: 'Luminous AI',
-  screen: {
-    tag: 'Health OS',
-    headline: '极简与强大的完美平衡',
-    body: '告别杂乱的医疗词汇。我们将繁琐的药品信息转译呈您能一眼读懂的智能卡片。',
-    panels: [
-      { title: '药品解析', value: '0.5s' },
-      { title: '相互作用', value: '安全' },
-      { title: '界面主题', value: '7种' },
-    ],
-  },
-}
 
 const activeFeatureIndex = ref(0)
 const interactiveFeatures = [
   {
-    title: '智能识别',
-    desc: '拍照扫描，秒识别药品成分、用法、禁忌。AI 帮你理解复杂的医学信息。',
-    shotId: 'medicine-recognition'
+    title: '拍照识别',
+    desc: '把药盒或药板先识别出来，再通过候选确认和详情页继续读懂它。',
+    shotId: 'medicine-recognition',
   },
   {
-    title: '安全卫士',
-    desc: '实时检测用药风险，药物相互作用一览无遗。为你的健康把关。',
-    shotId: 'safety-assist'
+    title: '今日提醒',
+    desc: '提醒、完成状态和下一次任务会在日内视图里被统一整理，而不是散在多处。',
+    shotId: 'today-reminders',
   },
   {
-    title: '贴心陪伴',
-    desc: '个性化提醒，深浅主题切换，7 种风格选择。用来自你的设计语言。',
-    shotId: 'my-profile'
-  }
+    title: '识别相册',
+    desc: '历史条目沉淀成可回看的缩略图和摘要，帮助之后快速复查。',
+    shotId: 'recognition-album',
+  },
 ]
 
-const activeFeatureImage = computed(() => {
-  const shotId = interactiveFeatures[activeFeatureIndex.value].shotId;
-  const shot = getScreenshotById(shotId)
-  return shot ? (shot.imageUrl || shot.thumbUrl) : ''
-})
+const activeFeature = computed(() => interactiveFeatures[activeFeatureIndex.value])
 
 const buildInfo = computed(() => [
   {
-    label: 'Platform',
-    value: download.value?.available ? '🤖 Android' : 'Beta Channel',
+    label: '平台',
+    value: download.value?.available ? 'Android' : 'Android Beta',
   },
   {
-    label: 'Version',
-    value: download.value?.available ? formatVersion(download.value) : '3.0.0',
+    label: '版本',
+    value: download.value?.available ? formatVersion(download.value) : '3.1.0-rc.1+36',
   },
   {
-    label: 'Size',
-    value: download.value?.available ? formatBytes(download.value.sizeBytes) : '~85MB',
+    label: '体积',
+    value: download.value?.available ? formatBytes(download.value.sizeBytes) : '运行时清单在线后显示',
   },
   {
-    label: 'Updated',
-    value: download.value?.available ? formatUpdatedAt(download.value.updatedAt) : 'Latest',
+    label: '更新时间',
+    value: download.value?.available ? formatUpdatedAt(download.value.updatedAt) : '等待 manifest 同步',
   },
 ])
+
+const roadmap = [
+  {
+    title: '继续打磨 Android 主流程',
+    body: '当前最重要的仍是识别、提醒、打卡、安全辅助与相册回看的稳定性，而不是过早铺陈太多承诺。',
+  },
+  {
+    title: '官网和运行时清单保持同步',
+    body: '下载入口、版本号、截图和更新时间会优先从 manifest 拉取，减少官网和真实构建状态脱节。',
+  },
+  {
+    title: '逐步验证多端可能性',
+    body: '仓库里已经保留多平台工程，但当前对外主验证仍以 Android 为先，其他平台会在主流程稳定后继续评估。',
+  },
+]
 </script>
 
 <template>
@@ -89,52 +82,61 @@ const buildInfo = computed(() => [
     <section class="page-hero">
       <div class="page__container">
         <div class="page-hero__content" data-hero-item>
-          <span class="page-hero__eyebrow">Get Started</span>
-          <h1>加入我们</h1>
+          <span class="page-hero__eyebrow">Android Beta</span>
+          <h1>下载与内测状态</h1>
           <p>
-            现在就下载 Luminous，开始更智能、更安心的用药生活。
+            这里不再制造“随时可下载”的错觉，而是如实展示当前 Android 版本与运行时清单是否已经在线。
           </p>
         </div>
       </div>
     </section>
 
     <div class="page__container">
-      <section class="download-hero">
+      <section class="download-overview">
         <CTAConsole :content="siteContent.downloadMeta" />
       </section>
 
-      <section class="features-section">
-        <div class="features-text">
-          <h3>为什么选择 Luminous</h3>
-          <ul class="features-list">
+      <section class="build-panel">
+        <article v-for="item in buildInfo" :key="item.label" class="build-card">
+          <span>{{ item.label }}</span>
+          <strong>{{ item.value }}</strong>
+        </article>
+      </section>
+
+      <section class="download-feature">
+        <div class="download-feature__list">
+          <span class="download-kicker">What You Will Actually See</span>
+          <h2>下载页只强调当前项目里已经能被验证的体验</h2>
+          <ul>
             <li
-              v-for="(feat, idx) in interactiveFeatures"
-              :key="idx"
-              :class="{ 'is-active': activeFeatureIndex === idx }"
-              @mouseenter="activeFeatureIndex = idx"
+              v-for="(feature, index) in interactiveFeatures"
+              :key="feature.title"
+              :class="{ 'is-active': activeFeatureIndex === index }"
+              @mouseenter="activeFeatureIndex = index"
+              @focusin="activeFeatureIndex = index"
             >
-              <strong>{{ feat.title }}</strong>
-              <p>{{ feat.desc }}</p>
+              <strong>{{ feature.title }}</strong>
+              <p>{{ feature.desc }}</p>
             </li>
           </ul>
         </div>
 
-        <div class="features-visual features-visual-device">
-          <div class="feature-mockup-wrapper">
-             <transition name="fade" mode="out-in">
-               <img :key="activeFeatureImage" :src="activeFeatureImage" alt="Feature Preview" class="feature-mockup-image" />
-             </transition>
-          </div>
+        <div class="download-feature__preview">
+          <RuntimeShotCard
+            :shot-id="activeFeature.shotId"
+            :title="activeFeature.title"
+            :caption="activeFeature.desc"
+            :fallback-scene="siteContent.screenshotSlots.find((item) => item.id === activeFeature.shotId)?.fallbackScene"
+          />
         </div>
       </section>
 
       <GlassSection
-        eyebrow="App Gallery"
-        v-if="galleryShots.length > 0"
-        title="实机截图集锦"
-        lead="这些是从真实运行的应用中直接抓取的截图。"
+        eyebrow="Gallery"
+        title="当前展示用截图"
+        lead="这些截图会优先跟随运行时 manifest 更新；离线时则回退到同样遵循产品结构的占位内容。"
       >
-        <div class="screenshot-grid">
+        <div class="download-shot-grid">
           <RuntimeShotCard
             v-for="shot in galleryShots"
             :key="shot.id"
@@ -148,47 +150,14 @@ const buildInfo = computed(() => [
 
       <GlassSection
         eyebrow="Roadmap"
-        title="未来的样子"
-        lead="我们在持续打磨，将用药管理变得更智能、更温和、更贴心。"
+        title="接下来的重点"
+        lead="产品还在持续打磨，所以这部分只描述当前代码和工程方向已经给出的合理信号。"
       >
-        <div class="roadmap-grid">
-          <div class="roadmap-card">
-            <h4>📱 多平台支持</h4>
-            <p>iOS 版本已在开发，Web 端管理工具也在筹划中。在你喜欢的任何设备上同步管理。</p>
-          </div>
-          <div class="roadmap-card">
-            <h4>🤝 生态联动</h4>
-            <p>正在探索与医疗机构、药房的合作，让医患沟通和持续关怀更流畅自然。</p>
-          </div>
-          <div class="roadmap-card">
-            <h4>🧬 智能深化</h4>
-            <p>个性化推荐、趋势分析、预测预警在路上。AI 将以更温暖的方式陪伴你。</p>
-          </div>
-        </div>
-      </GlassSection>
-
-      <GlassSection
-        eyebrow="FAQ"
-        title="你可能想了解"
-        lead="关于下载、安装、数据隐私的问题都在这里。"
-      >
-        <div class="faq-grid">
-          <details class="faq-item">
-            <summary>需要什么系统版本？</summary>
-            <p>兼容 Android 9.0 及以上。大多数设备都能流畅运行。我们也在优化旧设备的适配。</p>
-          </details>
-          <details class="faq-item">
-            <summary>我的数据安全吗？</summary>
-            <p>默认本地存储，你的用药数据永远不会在你未同意的情况下离开设备。我们对隐私的尊重是坚定的。</p>
-          </details>
-          <details class="faq-item">
-            <summary>可以导出数据吗？</summary>
-            <p>完全支持。我们尊重你对自己数据的所有权。可随时导出、备份或转移到其他应用。</p>
-          </details>
-          <details class="faq-item">
-            <summary>遇到问题怎么办？</summary>
-            <p>应用内反馈、邮件、社区论坛都是联系我们的途径。我们承诺 24 小时内回复。</p>
-          </details>
+        <div class="roadmap-grid-local">
+          <article v-for="item in roadmap" :key="item.title" class="roadmap-card-local">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.body }}</p>
+          </article>
         </div>
       </GlassSection>
     </div>
@@ -196,239 +165,140 @@ const buildInfo = computed(() => [
 </template>
 
 <style scoped>
-.download-hero {
-  margin: 3rem 0;
-  padding: 3rem;
-  background: linear-gradient(135deg, rgba(255, 230, 213, 0.08) 0%, rgba(232, 212, 255, 0.06) 100%);
-  border: 1px solid rgba(255, 230, 213, 0.15);
-  border-radius: 1.25rem;
+.download-overview {
+  border-radius: 2rem;
 }
 
-.features-section {
+.build-panel,
+.download-shot-grid,
+.roadmap-grid-local {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  margin: 4rem 0;
+  gap: 1rem;
+}
+
+.build-panel {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.build-card,
+.download-feature__list,
+.roadmap-card-local {
+  border: 1px solid rgba(132, 120, 113, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(247, 241, 236, 0.84));
+  box-shadow: 0 22px 48px rgba(126, 111, 103, 0.08);
+}
+
+.build-card {
+  padding: 1.3rem;
+  border-radius: 1.4rem;
+}
+
+.build-card span,
+.download-kicker {
+  display: inline-flex;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(112, 98, 92, 0.7);
+}
+
+.build-card strong {
+  display: block;
+  margin-top: 0.7rem;
+  color: rgba(72, 59, 53, 0.96);
+  line-height: 1.4;
+}
+
+.download-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1.2rem;
   align-items: center;
 }
 
-.features-text h3 {
-  margin: 0 0 1.5rem 0;
-  font-size: 1.7rem;
-  font-weight: 800;
-  color: rgba(15, 23, 42, 0.95);
+.download-feature__list {
+  padding: 2rem;
+  border-radius: 1.9rem;
 }
 
-.features-list {
+.download-feature__list h2 {
+  margin: 1rem 0 0;
+  color: rgba(72, 59, 53, 0.96);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.download-feature__list ul {
   list-style: none;
   padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  margin: 1.25rem 0 0;
+  display: grid;
+  gap: 0.85rem;
 }
 
-.features-list li {
-  padding: 1.5rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
-  border-left: 3px solid rgba(200, 240, 216, 0.1);
+.download-feature__list li {
+  padding: 1.1rem 1.15rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(132, 120, 113, 0.08);
+  background: rgba(255, 255, 255, 0.68);
   cursor: pointer;
-  opacity: 0.6;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  transform: translateX(0);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.features-list li.is-active {
-  opacity: 1;
-  transform: translateX(10px);
-  border-left-color: rgba(200, 240, 216, 1);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+.download-feature__list li.is-active {
+  transform: translateX(6px);
+  border-color: rgba(201, 180, 167, 0.22);
+  box-shadow: 0 16px 30px rgba(126, 111, 103, 0.08);
 }
 
-.feature-mockup-wrapper {
-  position: relative;
-  width: 260px;
-  height: 560px;
-  border-radius: 36px;
-  background: #f8fafc;
-  border: 10px solid #ffffff;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0,0,0,0.05);
-  overflow: hidden;
+.download-feature__list li strong,
+.roadmap-card-local h4 {
+  color: rgba(72, 59, 53, 0.95);
 }
 
-.feature-mockup-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.download-feature__list li p,
+.roadmap-card-local p {
+  margin: 0.55rem 0 0;
+  color: rgba(98, 85, 79, 0.76);
+  line-height: 1.7;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.features-list li strong {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: rgba(15, 23, 42, 0.95);
-  font-size: 1.05rem;
-}
-
-.features-list li p {
-  margin: 0;
-  color: rgba(71, 85, 105, 0.7);
-  line-height: 1.6;
-  font-size: 0.9rem;
-}
-
-.features-visual-device {
+.download-feature__preview {
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: 480px;
-  perspective: 1200px;
-  transform: rotateY(-8deg) rotateX(4deg) scale(0.95);
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-  filter: drop-shadow(-10px 25px 45px rgba(232, 186, 213, 0.15));
 }
 
-.features-visual-device:hover {
-  transform: rotateY(-2deg) rotateX(1deg) scale(1.0);
+.download-shot-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
 }
 
-.features-placeholder {
-  width: 100%;
-  padding: 3rem 2rem;
-  background: linear-gradient(135deg, #FFF9F7 0%, #FFFBF9 100%);
-  border: 2px dashed rgba(100, 116, 139, 0.15);
-  border-radius: 0.75rem;
-  text-align: center;
-  color: rgba(100, 110, 120, 0.7);
+.roadmap-grid-local {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
 }
 
-.features-placeholder span {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+.roadmap-card-local {
+  padding: 1.35rem;
+  border-radius: 1.45rem;
 }
 
-.screenshot-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.roadmap-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.roadmap-card {
-  padding: 1.75rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
-}
-
-.roadmap-card h4 {
-  margin: 0 0 0.75rem 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: rgba(15, 23, 42, 0.95);
-}
-
-.roadmap-card p {
-  margin: 0;
-  color: rgba(71, 85, 105, 0.7);
-  line-height: 1.6;
-  font-size: 0.9rem;
-}
-
-.faq-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-.faq-item {
-  padding: 1.25rem;
-  background: #ffffff;
-  border: 1px solid rgba(100, 116, 139, 0.06);
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.faq-item:hover {
-  border-color: rgba(100, 116, 139, 0.1);
-  background: rgba(255, 255, 255, 1);
-}
-
-.faq-item summary {
-  font-weight: 600;
-  color: rgba(15, 23, 42, 0.95);
-  cursor: pointer;
-  user-select: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.faq-item p {
-  margin: 1rem 0 0 0;
-  color: rgba(71, 85, 105, 0.7);
-  line-height: 1.6;
-  font-size: 0.9rem;
-}
-
-@media (max-width: 1024px) {
-  .download-hero {
-    padding: 2.5rem;
-  }
-
-  .features-section {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .download-hero {
-    padding: 2rem;
-    margin: 2rem 0;
-  }
-
-  .screenshot-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .roadmap-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .faq-grid {
+@media (max-width: 1180px) {
+  .build-panel,
+  .download-feature,
+  .download-shot-grid,
+  .roadmap-grid-local {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 600px) {
-  .screenshot-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+@media (max-width: 767px) {
+  .download-feature__list,
+  .build-card,
+  .roadmap-card-local {
+    padding: 1.2rem;
+    border-radius: 1.3rem;
   }
 }
 </style>
-

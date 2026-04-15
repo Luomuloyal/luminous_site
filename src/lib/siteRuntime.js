@@ -1,3 +1,11 @@
+import albumImage from '../assets/识别相册.png'
+import homeImage from '../assets/主页.png'
+import profileImage from '../assets/我的.png'
+import safetyImage from '../assets/安全辅助.png'
+import searchImage from '../assets/手动搜索.png'
+import recognitionImage from '../assets/识别.png'
+import settingsLightImage from '../assets/Screenshot_1774437088.png'
+
 const DEFAULT_MANIFEST = {
   generatedAt: null,
   download: {
@@ -17,57 +25,65 @@ const LOCAL_SCREENSHOTS = [
   {
     id: 'home-dashboard',
     title: '首页总览',
-    caption: '今日提醒、快捷入口和整体节奏集中在首页主视图里。',
-    imageUrl: 'https://pic1.imgdb.cn/item/69d1e11dee81d8282b3eb9d5.png',
-    thumbUrl: 'https://pic1.imgdb.cn/item/69d1e11dee81d8282b3eb9d5.png',
+    caption: '首页把下一条提醒、常用功能入口和今日提醒放进同一块主视图里。',
+    imageUrl: homeImage,
+    thumbUrl: homeImage,
     available: true,
   },
   {
     id: 'medicine-recognition',
-    title: '药物识别',
-    caption: '从拍照到识别结果，第一时间进入信息理解链路。',
-    imageUrl: 'https://pic1.imgdb.cn/item/69d1e11cee81d8282b3eb9d0.png',
-    thumbUrl: 'https://pic1.imgdb.cn/item/69d1e11cee81d8282b3eb9d0.png',
+    title: '识别结果页',
+    caption: '识别失败、重新识别、添加到相册和继续搜索都会留在同一张结果页里。',
+    imageUrl: recognitionImage,
+    thumbUrl: recognitionImage,
     available: true,
   },
   {
     id: 'manual-search-detail',
-    title: '手动搜索与药物信息',
-    caption: '无法拍照时，依旧能快速检索并查看药物详情。',
-    imageUrl: 'https://pic1.imgdb.cn/item/69d1e11cee81d8282b3eb9d2.png',
-    thumbUrl: 'https://pic1.imgdb.cn/item/69d1e11cee81d8282b3eb9d2.png',
+    title: '手动搜索',
+    caption: '搜索页支持关键词检索、常用搜索和最近搜索记录，适合拍照不方便的场景。',
+    imageUrl: searchImage,
+    thumbUrl: searchImage,
     available: true,
   },
   {
     id: 'today-reminders',
-    title: '今日提醒',
-    caption: '提醒与状态收敛成清晰的当日视图，节奏一眼可读。',
-    imageUrl: 'https://pic1.imgdb.cn/item/69d1e11cee81d8282b3eb9d1.png',
-    thumbUrl: 'https://pic1.imgdb.cn/item/69d1e11cee81d8282b3eb9d1.png',
+    title: '首页中的今日提醒',
+    caption: '当前素材里，今日提醒以首页卡片的形式出现，重点是下一条提醒和当日安排的快速查看。',
+    imageUrl: homeImage,
+    thumbUrl: homeImage,
     available: true,
   },
   {
     id: 'safety-assist',
     title: '安全辅助',
-    caption: '单药建议与双药相互作用保持克制提示，不越界。',
-    imageUrl: 'https://pic1.imgdb.cn/item/69d1e11cee81d8282b3eb9d3.png',
-    thumbUrl: 'https://pic1.imgdb.cn/item/69d1e11cee81d8282b3eb9d3.png',
+    caption: '单药建议与两药相互作用共用一套安全辅助界面，强调辅助判断而不是直接下结论。',
+    imageUrl: safetyImage,
+    thumbUrl: safetyImage,
     available: true,
   },
   {
     id: 'recognition-album',
     title: '识别相册',
-    caption: '缩略图和识别结果被沉淀下来，方便回看与复核。',
-    imageUrl: 'https://pic1.imgdb.cn/item/69d1e11dee81d8282b3eb9d4.png',
-    thumbUrl: 'https://pic1.imgdb.cn/item/69d1e11dee81d8282b3eb9d4.png',
+    caption: '识别记录可在相册里轻量归档，并区分本地保存与登录后同步的状态。',
+    imageUrl: albumImage,
+    thumbUrl: albumImage,
     available: true,
   },
   {
     id: 'my-profile',
-    title: '个人中心',
-    caption: '个人设置与偏好管理。',
-    imageUrl: 'https://pic1.imgdb.cn/item/69d1e11dee81d8282b3eb9d5.png',
-    thumbUrl: 'https://pic1.imgdb.cn/item/69d1e11dee81d8282b3eb9d5.png',
+    title: '我的与设置入口',
+    caption: '个人页把登录状态、常用入口和更多设置集中在一起，适合作为偏好管理的中枢页。',
+    imageUrl: profileImage,
+    thumbUrl: profileImage,
+    available: true,
+  },
+  {
+    id: 'settings-theme',
+    title: '主题与显示设置',
+    caption: '设置页可以切换跟随系统、浅色、深色，并配置柔岚、月雾、神树、虚霭、浅砂五套主题。',
+    imageUrl: settingsLightImage,
+    thumbUrl: settingsLightImage,
     available: true,
   }
 ]
